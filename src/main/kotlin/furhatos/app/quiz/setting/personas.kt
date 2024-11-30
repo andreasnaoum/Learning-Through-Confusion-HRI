@@ -2,6 +2,8 @@ package furhatos.app.quiz.setting
 
 import furhatos.flow.kotlin.FlowControlRunner
 import furhatos.flow.kotlin.furhat
+import furhatos.flow.kotlin.voice.AcapelaVoice
+import furhatos.flow.kotlin.voice.AzureVoice
 import furhatos.flow.kotlin.voice.PollyNeuralVoice
 import furhatos.flow.kotlin.voice.Voice
 
@@ -26,6 +28,6 @@ fun FlowControlRunner.activate(persona: Persona) {
 val quizPersona = Persona(
         name = "Quizmaster",
         face = listOf("Alex", "default"),
-        voice = listOf(PollyNeuralVoice.Amy())
+        voice = listOf(PollyNeuralVoice.Joanna())
 //        voice = listOf(PollyNeuralVoice.Joanna())
 )

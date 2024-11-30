@@ -13,6 +13,8 @@ import furhatos.app.quiz.setting.quiz
 import furhatos.flow.kotlin.*
 import furhatos.gestures.Gestures
 import furhatos.nlu.common.RequestRepeat
+import furhatos.records.Location
+import furhatos.skills.emotions.UserGestures
 
 val AskQuestion: State = state(parent = Parent) {
     var questionSet: QuestionSet? = null
@@ -52,19 +54,51 @@ val AskQuestion: State = state(parent = Parent) {
 
         // If the user answers correct, we up the user's score and congratulates the user
         if (answer.correct) {
-            furhat.gesture(Gestures.Smile)
+            furhat.gesture(Gestures.Nod)
             users.current.quiz.score++
-            random(
-                    { furhat.say("Great! That was the ${furhat.voice.emphasis("right")}  answer, you now have a score of ${users.current.quiz.score}") },
-                    { furhat.say("that was ${furhat.voice.emphasis("correct")}, you now have a score of ${users.current.quiz.score}") }
-            )
+
+            val correct1 = utterance {
+                + Gestures.Smile(strength = 2.0, duration = 6.0)
+                + "You nailed it! That was the ${furhat.voice.emphasis("right")}  answer, you now have a score of ${users.current.quiz.score}"
+            }
+            val correct2 = utterance {
+                + Gestures.Smile(strength = 2.0, duration = 6.0)
+                + "Oh absolutely! Let me repeat, ${questionSet!!.current.text} ${questionSet!!.current.getOptionsString()}"
+            }
+
+            if (users.current.quiz.score == 1) {
+                val correct1 = utterance {
+                    + Gestures.Smile(strength = 2.0, duration = 6.0)
+                    + "You nailed it! That was the ${furhat.voice.emphasis("right")}  answer, you now have a score of ${users.current.quiz.score}"
+                }
+                furhat.say(correct1)
+            } else if (users.current.quiz.score == 2) {
+                val correct2 = utterance {
+                    + glance(Location.LEFT)
+                    + "Are you an AI expert? That was the ${furhat.voice.emphasis("right")}  answer, you now have a score of ${users.current.quiz.score}"
+                }
+                furhat.say(correct2)
+            }
+
+
+//            random(
+//                    { furhat.say("You nailed it! That was the ${furhat.voice.emphasis("right")}  answer, you now have a score of ${users.current.quiz.score}") },
+//                    { furhat.say("Are you an AI expert? That was the ${furhat.voice.emphasis("right")}  answer, you now have a score of ${users.current.quiz.score}") },
+//                    { furhat.say("that was ${furhat.voice.emphasis("correct")}, you now have a score of ${users.current.quiz.score}") }
+//            )
             /*
             If the user answers incorrect, we give another user the chance of answering if one is present in the game.
             If we indeed ask another player, the furhat.ask() interrupts the rest of the handler.
              */
         } else {
-            furhat.gesture(Gestures.BrowFrown)
-            furhat.say("Sorry, that was ${furhat.voice.emphasis("not")} correct")
+            furhat.gesture(Gestures.Shake)
+            val bad1 = utterance {
+                + Gestures.BrowFrown(strength = 2.0, duration = 6.0)
+                + "Sorry! That was ${furhat.voice.emphasis("not")} correct\"}"
+            }
+            furhat.say(bad1)
+//            furhat.gesture(Gestures.BrowFrown)
+//            furhat.say("Sorry, that was ${furhat.voice.emphasis("not")} correct")
 
             // Keep track of what users answered what question so that we don't ask the same user
             if (questionSet != null) {
@@ -87,7 +121,24 @@ val AskQuestion: State = state(parent = Parent) {
 
         // Check if the game has ended and if not, goes to a new question
         if (++rounds >= maxQuestions) {
-            furhat.say("That was the last question")
+            val correct2 = utterance {
+                + Gestures.BigSmile(strength = 2.0, duration = 2.0)
+                + "That was the last question!"
+            }
+            furhat.say(correct2)
+            furhat.say("Your final score is ${users.current.quiz.score}")
+            val correct3 = utterance {
+                + Gestures.Smile(strength = 2.0, duration = 3.0)
+                + "It looks like you're enjoying the game. I'm glad about it! See you around!"
+            }
+            furhat.say(correct3)
+
+
+
+
+            //            furhat.say("That was the last question!")
+//            furhat.say("That was the last question")
+
             goto(NewGame)
         } else {
             goto(NewQuestion)
@@ -96,7 +147,11 @@ val AskQuestion: State = state(parent = Parent) {
 
     // The users answers that they don't know
     onResponse<DontKnow> {
-        furhat.say("Too bad. Here comes the next question")
+        val correct2 = utterance {
+            + Gestures.ExpressSad(strength = 2.0, duration = 2.0)
+            + "Too bad. Here comes the next question"
+        }
+        furhat.say(correct2)
         goto(NewQuestion)
     }
 

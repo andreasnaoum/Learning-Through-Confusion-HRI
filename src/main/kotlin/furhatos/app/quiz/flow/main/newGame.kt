@@ -72,10 +72,10 @@ val NewGame = state(parent = Parent) {
                 }
                 furhat.say(initial_speak)
             }
-            delay(2000)
+            delay(1000)
             val currentRound = Rounds.current
             furhat.say(currentRound.description)
-            delay(2000)
+            delay(1000)
 //            if (!users.current.isAttendingFurhat) {
 //                goto(Attention)
 //            }
@@ -102,7 +102,6 @@ val NewGame = state(parent = Parent) {
 //                furhat.say(back_test)
 //            }
             when (scenario) {
-
                 0 -> { // No Confusion
                     furhat.say(currentRound.noConfusion)
                 }
@@ -113,11 +112,16 @@ val NewGame = state(parent = Parent) {
                     furhat.say(currentRound.unproductiveConfusion)
                 }
             }
-            delay(2000)
+            delay(1000)
             when (Rounds.currentRoundIndex) {
 
                 0 -> { // Questions for Round 1
-                    furhat.ask("Alright, ready for some challenging questions? Otherwise, I can repeat the information.")
+                    val initial_speak = utterance {
+                        + Gestures.Thoughtful(strength=2.0, duration=1.5)
+                        + "Alright, ready for some challenging questions?"
+                    }
+                    furhat.say(initial_speak)
+                    furhat.ask("Otherwise, I can repeat the information.")
                 }
 
                 1 -> { // Questions for Round 2
@@ -173,6 +177,16 @@ val NewGame = state(parent = Parent) {
         when (scenario) {
             0 -> { // No Confusion
                 furhat.say(currentRound.noConfusion)
+                val initial_speak = utterance {
+                    + Gestures.Smile(strength=2.0, duration=1.5)
+                    + "Let's start!"
+                }
+                furhat.say(initial_speak)
+
+                questions = QuestionSet(questionsRound1)
+                questions!!.next()
+                Rounds.next()
+                goto(AskQuestion)
             }
             1 -> { // Productive Confusion
                 furhat.say(currentRound.productiveConfusion)
