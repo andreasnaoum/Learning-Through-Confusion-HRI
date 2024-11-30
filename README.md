@@ -19,3 +19,11 @@ The goal is to examine how creating and resolving confusion can impact user enga
 - **FurhatOS SDK**
 - **Kotlin 1.8**
 - Any IDE or editor supporting Kotlin development (e.g., IntelliJ IDEA).
+
+## Demo Video
+
+Watch a demo of the interaction below:
+
+[![Watch the demo](https://img.youtube.com/vi/3kywVuTSIVo/0.jpg)](https://youtu.be/3kywVuTSIVo)
+
+Click on the image to watch the video on YouTube!
