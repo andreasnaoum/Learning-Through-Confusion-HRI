@@ -53,7 +53,7 @@ val Idle: State = state {
 
 // Variables
 
-val maxRounds = 1
+val maxQuestions = 3
 var rounds = 0
 var shouldChangeUser = true
 var playing = false
@@ -63,17 +63,6 @@ var questions: QuestionSet? = null
 fun QueryPerson(user: User) = state(parent = Parent) {
     onEntry {
         if (!user.quiz.played) {
-            val greeting = utterance {
-                + Gestures.Smile(strength = 2.0, duration = 6.0)
-                +"I’m a personal tutor"
-                + delay(1000)
-                + "Today you have the opportunity to dive into the fascinating world of"
-                + Gestures.Oh(strength = 5.0, duration = 5.0)
-                + delay(2500)
-                + "Artificial Intelligence!"
-            }
-            furhat.say(greeting)
-            furhat.gesture(Gestures.Smile(strength = 5.0, duration = 3.0))
             furhat.ask("Do you want to learn more about AI and play a game?")
         } else {
             furhat.ask("Do you want to play again? Maybe you can beat your old score of ${user.quiz.lastScore}")
@@ -93,7 +82,18 @@ fun QueryPerson(user: User) = state(parent = Parent) {
         }
         furhat.say(response_yes)
         furhat.gesture(Gestures.Smile(strength= 2.0, duration = 3.0))
-        furhat.say("AI is super exciting, and I promise you’re going to have a great time.")
+        val greeting = utterance {
+            + Gestures.Smile(strength = 2.0, duration = 6.0)
+            +"I’m a personal tutor"
+            + delay(1000)
+            + "Today you have the opportunity to dive into the fascinating world of"
+            + Gestures.Oh(strength = 5.0, duration = 5.0)
+            + delay(2500)
+            + "Artificial Intelligence!"
+        }
+        furhat.say(greeting)
+        furhat.gesture(Gestures.Smile(strength = 5.0, duration = 3.0))
+//        furhat.say("AI is super exciting, and I promise you’re going to have a great time.")
         goto(Idle)
     }
 

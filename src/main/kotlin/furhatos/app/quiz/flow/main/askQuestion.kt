@@ -81,7 +81,7 @@ val AskQuestion: State = state(parent = Parent) {
         }
 
         // Check if the game has ended and if not, goes to a new question
-        if (++rounds >= maxRounds) {
+        if (++rounds >= maxQuestions) {
             furhat.say("That was the last question")
             goto(NewGame)
         } else {
@@ -182,18 +182,18 @@ val NewQuestion = state(parent = Parent) {
 //                )
 //            }
 //        }
-        if (!users.current.isAttendingFurhat) {
-            furhat.say {
-                random {
-                    block {
-                        +"But then I do want you to pay attention"
-                        +Gestures.BigSmile
-                    }
-                    +"Look at me, I'm captain now"
-                    +"Could you pay some attention to me"
-                }
-            }
-        }
+//        if (!users.current.isAttendingFurhat) {
+//            furhat.say {
+//                random {
+//                    block {
+//                        +"But then I do want you to pay attention"
+//                        +Gestures.BigSmile
+//                    }
+//                    +"Look at me, I'm captain now"
+//                    +"Could you pay some attention to me"
+//                }
+//            }
+//        }
         // Ask new question
         questionSet?.next()
         goto(AskQuestion)

@@ -12,7 +12,7 @@ import furhatos.flow.kotlin.*
 import furhatos.nlu.common.No
 import furhatos.nlu.common.Yes
 import furhatos.skills.emotions.UserGestures
-import furhatos.app.quiz.flow.main.Attention
+//import furhatos.app.quiz.flow.main.Attention
 
 
 // The game logic inside the state
@@ -21,12 +21,12 @@ val NewGame = state(parent = Parent) {
     var speaking = false
     var said_enjoy = false
 
-    onUserGesture(UserGestures.Smile) {
-        if (!said_enjoy) {
-            furhat.say("It looks like you're enjoying the game. I'm glad about it!")
-            said_enjoy = true
-        }
-    }
+//    onUserGesture(UserGestures.Smile) {
+//        if (!said_enjoy) {
+//            furhat.say("It looks like you're enjoying the game. I'm glad about it!")
+//            said_enjoy = true
+//        }
+//    }
 
 //    onUserAttend(instant = true) {user ->
 
@@ -68,10 +68,7 @@ val NewGame = state(parent = Parent) {
                 speaking = true
                 val initial_speak = utterance {
                     + Gestures.Smile(strength=2.0, duration=1.5)
-                    + "We’ll be exploring basic AI concepts through three rounds."
-                    + Gestures.Roll(strength=2.0, duration=2.0)
-                    + "Let's get started!"
-
+                    + "We’ll be exploring basic AI concepts."
                 }
                 furhat.say(initial_speak)
             }
@@ -120,7 +117,7 @@ val NewGame = state(parent = Parent) {
             when (Rounds.currentRoundIndex) {
 
                 0 -> { // Questions for Round 1
-                    furhat.ask("Alright, ready for some challenging questions?")
+                    furhat.ask("Alright, ready for some challenging questions? Otherwise, I can repeat the information.")
                 }
 
                 1 -> { // Questions for Round 2
@@ -140,11 +137,14 @@ val NewGame = state(parent = Parent) {
         when (Rounds.currentRoundIndex) {
 
             0 -> { // Questions for Round 1
-                furhat.say("Let's start!")
-                furhat.gesture(Gestures.BigSmile)
+                val initial_speak = utterance {
+                    + Gestures.Smile(strength=2.0, duration=1.5)
+                    + "Let's start!"
+                }
+                furhat.say(initial_speak)
+
                 questions = QuestionSet(questionsRound1)
                 questions!!.next()
-                furhat.attend(users.playing().first())
                 Rounds.next()
                 goto(AskQuestion)
             }
@@ -152,7 +152,6 @@ val NewGame = state(parent = Parent) {
             1 -> { // Questions for Round 2
                 questions = QuestionSet(questionsRound2)
                 questions!!.next()
-                furhat.attend(users.playing().first())
                 Rounds.next()
                 goto(AskQuestion)
             }
@@ -160,7 +159,6 @@ val NewGame = state(parent = Parent) {
             2 -> { // Questions for Round 3
                 questions = QuestionSet(questionsRound3)
                 questions!!.next()
-                furhat.attend(users.playing().first())
                 Rounds.next()
                 goto(AskQuestion)
             }

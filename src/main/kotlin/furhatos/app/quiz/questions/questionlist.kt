@@ -8,55 +8,36 @@ package furhatos.app.quiz.questions
  */
 
 val questionsRound1 = mutableListOf(
+
         Question(
-                "What does AI stand for? 🤖",
-                answer = listOf("Artificial Intelligence", "AI"),
+                "If an AI learns to sort your photos into 'cats' and 'dogs' by looking at labeled pictures, what type of learning is this?",
+                answer = listOf("Supervised Learning", "Supervised"),
                 alternatives = listOf(
-                        listOf("Awesome Intelligence"),
-                        listOf("Amazing Insights"),
-                        listOf("Advanced Innovation")
+                        listOf("Unsupervised Learning"),
+                        listOf("Reinforcement Learning"),
+                        listOf("Generative Learning")
                 )
         ),
 
-//        Question(
-//                "If an AI learns to sort your photos into 'cats' and 'dogs' by looking at labeled pictures, what type of learning is this? 🐶🐱",
-//                answer = listOf("Supervised Learning", "Supervised"),
-//                alternatives = listOf(
-//                        listOf("Unsupervised Learning"),
-//                        listOf("Reinforcement Learning"),
-//                        listOf("Generative Learning")
-//                )
-//        ),
+        Question(
+                "In supervised learning, what does the model use to make predictions? 📊",
+                answer = listOf("Labeled data"),
+                alternatives = listOf(
+                        listOf("Unlabeled data"),
+                        listOf("Random guesses"),
+                        listOf("Predefined instructions")
+                )
+        ),
 
-//        Question(
-//                "In supervised learning, what does the model use to make predictions? 📊",
-//                answer = listOf("Labeled data"),
-//                alternatives = listOf(
-//                        listOf("Unlabeled data"),
-//                        listOf("Random guesses"),
-//                        listOf("Predefined instructions")
-//                )
-//        ),
-//
-//        Question(
-//                "What is the main goal of unsupervised learning? 🤔",
-//                answer = listOf("To find patterns in data without labels"),
-//                alternatives = listOf(
-//                        listOf("To classify data into predefined categories"),
-//                        listOf("To make predictions with labeled data"),
-//                        listOf("To create new labels for the data")
-//                )
-//        ),
-//
-//        Question(
-//                "In supervised learning, what does the model learn from the labeled data? 📚",
-//                answer = listOf("The relationship between input and output"),
-//                alternatives = listOf(
-//                        listOf("Only the input values"),
-//                        listOf("Only the output labels"),
-//                        listOf("Random patterns")
-//                )
-//        )
+        Question(
+                "What is the main goal of unsupervised learning? 🤔",
+                answer = listOf("To find patterns in data without labels"),
+                alternatives = listOf(
+                        listOf("To classify data into predefined categories"),
+                        listOf("To make predictions with labeled data"),
+                        listOf("To create new labels for the data")
+                )
+        ),
 )
 
 val questionsRound2 = mutableListOf(
