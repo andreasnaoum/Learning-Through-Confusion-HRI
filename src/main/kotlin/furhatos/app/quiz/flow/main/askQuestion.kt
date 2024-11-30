@@ -37,7 +37,12 @@ val AskQuestion: State = state(parent = Parent) {
     onReentry {
         failedAttempts = 0
         if (questionSet != null) {
-            furhat.ask("The question was, ${questionSet!!.current.text} ${questionSet!!.current.getOptionsString()}")
+            val greeting = utterance {
+                + Gestures.Smile(strength = 2.0, duration = 6.0)
+                + "Oh absolutely! Let me repeat, ${questionSet!!.current.text} ${questionSet!!.current.getOptionsString()}"
+            }
+            furhat.ask(greeting)
+//            furhat.ask()
         }
     }
 

@@ -89,7 +89,7 @@ fun QueryPerson(user: User) = state(parent = Parent) {
             + "Today you have the opportunity to dive into the fascinating world of"
             + Gestures.Oh(strength = 5.0, duration = 5.0)
             + delay(2500)
-            + "Artificial Intelligence!"
+            + furhat.voice.emphasis("Artificial Intelligence!")
         }
         furhat.say(greeting)
         furhat.gesture(Gestures.Smile(strength = 5.0, duration = 3.0))
