@@ -1,7 +1,6 @@
 package furhatos.app.quiz.flow.main
 
 import furhatos.app.quiz.AnswerOption
-import furhatos.app.quiz.DontKnow
 import furhatos.app.quiz.RequestRepeatOptions
 import furhatos.app.quiz.RequestRepeatQuestion
 import furhatos.app.quiz.flow.Parent

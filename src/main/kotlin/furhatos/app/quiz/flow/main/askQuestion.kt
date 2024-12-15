@@ -1,18 +1,15 @@
 package furhatos.app.quiz.flow.main
 
-import furhatos.app.quiz.AnswerOption
-import furhatos.app.quiz.DontKnow
-import furhatos.app.quiz.RequestRepeatOptions
-import furhatos.app.quiz.RequestRepeatQuestion
+import furhatos.app.quiz.*
 import furhatos.app.quiz.flow.Parent
 import furhatos.app.quiz.questions.QuestionSet
-import furhatos.app.quiz.setting.nextPlaying
-import furhatos.app.quiz.setting.notQuestioned
-import furhatos.app.quiz.setting.playing
-import furhatos.app.quiz.setting.quiz
+import furhatos.app.quiz.questions.questionsRound1
+import furhatos.app.quiz.setting.*
 import furhatos.flow.kotlin.*
 import furhatos.gestures.Gestures
+import furhatos.nlu.common.No
 import furhatos.nlu.common.RequestRepeat
+import furhatos.nlu.common.Yes
 import furhatos.records.Location
 import furhatos.skills.emotions.UserGestures
 
@@ -23,6 +20,9 @@ val AskQuestion: State = state(parent = Parent) {
     onEntry {
         questionSet = questions
         failedAttempts = 0
+
+        print("Scenario 1")
+        print(scenario)
 
         // Set speech rec phrases based on the current question's answers
         if (questionSet != null) {
@@ -44,7 +44,6 @@ val AskQuestion: State = state(parent = Parent) {
                 + "Oh absolutely! Let me repeat, ${questionSet!!.current.text} ${questionSet!!.current.getOptionsString()}"
             }
             furhat.ask(greeting)
-//            furhat.ask()
         }
     }
 
@@ -57,39 +56,25 @@ val AskQuestion: State = state(parent = Parent) {
             furhat.gesture(Gestures.Nod)
             users.current.quiz.score++
 
-            val correct1 = utterance {
-                + Gestures.Smile(strength = 2.0, duration = 6.0)
-                + "You nailed it! That was the ${furhat.voice.emphasis("right")}  answer, you now have a score of ${users.current.quiz.score}"
-            }
-            val correct2 = utterance {
-                + Gestures.Smile(strength = 2.0, duration = 6.0)
-                + "Oh absolutely! Let me repeat, ${questionSet!!.current.text} ${questionSet!!.current.getOptionsString()}"
-            }
-
             if (users.current.quiz.score == 1) {
-                val correct1 = utterance {
+                val correct = utterance {
                     + Gestures.Smile(strength = 2.0, duration = 6.0)
                     + "You nailed it! That was the ${furhat.voice.emphasis("right")}  answer, you now have a score of ${users.current.quiz.score}"
                 }
-                furhat.say(correct1)
+                furhat.say(correct)
             } else if (users.current.quiz.score == 2) {
-                val correct2 = utterance {
+                val correct = utterance {
                     + glance(Location.LEFT)
                     + "Are you an AI expert? That was the ${furhat.voice.emphasis("right")}  answer, you now have a score of ${users.current.quiz.score}"
                 }
-                furhat.say(correct2)
+                furhat.say(correct)
+            } else {
+                val correct = utterance {
+                    + Gestures.Smile(strength = 2.0, duration = 6.0)
+                    + "Nice! That was the ${furhat.voice.emphasis("right")}  answer, you now have a score of ${users.current.quiz.score}"
+                }
+                furhat.say(correct)
             }
-
-
-//            random(
-//                    { furhat.say("You nailed it! That was the ${furhat.voice.emphasis("right")}  answer, you now have a score of ${users.current.quiz.score}") },
-//                    { furhat.say("Are you an AI expert? That was the ${furhat.voice.emphasis("right")}  answer, you now have a score of ${users.current.quiz.score}") },
-//                    { furhat.say("that was ${furhat.voice.emphasis("correct")}, you now have a score of ${users.current.quiz.score}") }
-//            )
-            /*
-            If the user answers incorrect, we give another user the chance of answering if one is present in the game.
-            If we indeed ask another player, the furhat.ask() interrupts the rest of the handler.
-             */
         } else {
             furhat.gesture(Gestures.Shake)
             val bad1 = utterance {
@@ -97,18 +82,12 @@ val AskQuestion: State = state(parent = Parent) {
                 + "Sorry! That was ${furhat.voice.emphasis("not")} correct\"}"
             }
             furhat.say(bad1)
-//            furhat.gesture(Gestures.BrowFrown)
-//            furhat.say("Sorry, that was ${furhat.voice.emphasis("not")} correct")
 
             // Keep track of what users answered what question so that we don't ask the same user
             if (questionSet != null) {
                 users.current.quiz.questionsAsked.add(questionSet!!.current.text)
             }
 
-            /* Find another user that has not answered this question and if so, asks them.
-             For the flow of the skill, we will continue asking the new user the next question through the
-             shouldChangeUser = false flag.
-             */
             val availableUsers = questionSet?.current?.let { it1 -> users.notQuestioned(it1.text) }
             if (availableUsers != null) {
                 if (!availableUsers.isEmpty()) {
@@ -133,26 +112,27 @@ val AskQuestion: State = state(parent = Parent) {
             }
             furhat.say(correct3)
 
-
-
-
-            //            furhat.say("That was the last question!")
-//            furhat.say("That was the last question")
-
             goto(NewGame)
         } else {
             goto(NewQuestion)
         }
     }
 
-    // The users answers that they don't know
-    onResponse<DontKnow> {
-        val correct2 = utterance {
-            + Gestures.ExpressSad(strength = 2.0, duration = 2.0)
-            + "Too bad. Here comes the next question"
+    onResponse<RequestHint> {
+        furhat.say("Okay, let me help you!")
+        print("Scenario " + scenario)
+        when (scenario) {
+            0 -> { // No Confusion
+                print("INSIDEEE")
+                furhat.say(questionSet!!.current.noConfusionHint)
+            }
+            1 -> { // Productive Confusion
+                furhat.say(questionSet!!.current.productiveConfusionHint)
+            }
+            2 -> { // Unproductive Confusion
+                furhat.say(questionSet!!.current.unproductiveConfusionHint)
+            }
         }
-        furhat.say(correct2)
-        goto(NewQuestion)
     }
 
     onResponse<RequestRepeat> {
@@ -221,39 +201,6 @@ val NewQuestion = state(parent = Parent) {
 
     onEntry {
         questionSet = questions
-        /*
-            If more than one player, we determine what user to target next here, based on the shouldChangeUser boolean
-         */
-//        if (users.playing().count() > 1) {
-//            if (shouldChangeUser) {
-//                val nextUser = users.nextPlaying()
-//                furhat.attend(nextUser)
-//                random(
-//                        { furhat.say("The next one is for you") },
-//                        { furhat.say("For you now") },
-//                        { furhat.say("Now for you") }
-//                )
-//            } else {
-//                shouldChangeUser = true
-//                random(
-//                        { furhat.say("You get to continue") },
-//                        { furhat.say("Next one coming up") },
-//                        { furhat.say("Here's another one") }
-//                )
-//            }
-//        }
-//        if (!users.current.isAttendingFurhat) {
-//            furhat.say {
-//                random {
-//                    block {
-//                        +"But then I do want you to pay attention"
-//                        +Gestures.BigSmile
-//                    }
-//                    +"Look at me, I'm captain now"
-//                    +"Could you pay some attention to me"
-//                }
-//            }
-//        }
         // Ask new question
         questionSet?.next()
         goto(AskQuestion)

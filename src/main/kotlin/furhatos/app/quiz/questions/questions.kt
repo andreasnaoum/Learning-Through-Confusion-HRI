@@ -18,63 +18,30 @@ class QuestionSet(val questions: List<Question>) {
     }
 }
 
-//object QuestionSet1 {
-//
-//    var count : Int = 0
-//    var current: Question = questionsRound1.first()
-//
-//    fun next() {
-//        count++
-//        if (count >= questionsRound1.size)
-//            count = 0
-//        current = questionsRound1[count]
-//        AnswerOption().forget()
-//    }
-//
-//}
-//
-//object QuestionSet2 {
-//
-//    var count : Int = 0
-//    var current: Question = questionsRound2.first()
-//
-//    fun next() {
-//        count++
-//        if (count >= questionsRound2.size)
-//            count = 0
-//        current = questionsRound2[count]
-//        AnswerOption().forget()
-//    }
-//
-//}
-//
-//object QuestionSet3 {
-//
-//    var count : Int = 0
-//    var current: Question = questionsRound3.first()
-//
-//
-//    fun next() {
-//        count++
-//        if (count >= questionsRound3.size)
-//            count = 0
-//        current = questionsRound3[count]
-//        AnswerOption().forget()
-//    }
-//
-//}
-
 /**
  * The question class gets the following parameters:
  * @text : The question as a String
  * @answer : A list containing the correct answer to the question, followed by alternative pronunciations of the correct answer
  * @alternatives A list, containing lists of other (wrong) answers. Every other answer is also followed by alternative pronunciations of the correct answer.
  */
-class Question(val text: String, answer: List<String>, alternatives: List<List<String>>) {
+class Question(
+    val text: String,
+    val noconfusion: String,
+    val productiveconfusion: String,
+    val unproductiveconfusion: String,
+    answer: List<String>,
+    alternatives: List<List<String>>
+) {
     //All options, used to prime the NLU
     var options : MutableList<EnumItem> = mutableListOf()
     //Only the first option of the answers, these are correctly spelled, and not alternative.
     var primeoptions : MutableList<EnumItem> = mutableListOf()
+
+    var noConfusionHint: String = noconfusion
+
+    var productiveConfusionHint: String = productiveconfusion
+
+    var unproductiveConfusionHint: String = unproductiveconfusion
 
     //init loads the first item of the list into primeoptions
     //And loads everything into options

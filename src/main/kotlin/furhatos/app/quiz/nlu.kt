@@ -7,22 +7,39 @@ import furhatos.nlu.EnumItem
 import furhatos.nlu.Intent
 import furhatos.util.Language
 
-class DontKnow : Intent() {
-    override fun getExamples(lang: Language): List<String> {
-        return listOf(
-                "I don't know",
-                "don't know",
-                "no idea",
-                "I have no idea"
-        )
-    }
-}
+//class DontKnow : Intent() {
+//    override fun getExamples(lang: Language): List<String> {
+//        return listOf(
+//                "I don't know",
+//                "don't know",
+//                "no idea",
+//                "I have no idea"
+//        )
+//    }
+//}
 
 class RequestRules : Intent() {
     override fun getExamples(lang: Language): List<String> {
         return listOf(
                 "what are the rules",
                 "how does it work"
+        )
+    }
+}
+
+class RequestHint : Intent() {
+    override fun getExamples(lang: Language): List<String> {
+        return listOf(
+            "Hint",
+            "I want hint",
+            "Please give me hint",
+            "Can I have a hint",
+            "I need help",
+            "help",
+            "I don't know",
+            "don't know",
+            "no idea",
+            "I have no idea"
         )
     }
 }
@@ -66,3 +83,11 @@ class AnswerOption : EnumEntity {
     }
 
 }
+
+//class RequestHint: EnumEntity(speechRecPhrases=true) {
+//
+//    override fun getEnum(lang: Language): List<String> {
+//        return listOf("Hint", "I want hint", "Please give me hint", "Can I have a hint", "I need help", "help")
+//    }
+//
+//}

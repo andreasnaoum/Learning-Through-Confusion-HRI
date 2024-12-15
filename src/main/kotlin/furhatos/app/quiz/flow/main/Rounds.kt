@@ -6,24 +6,48 @@ object Rounds {
 
     val rounds = listOf(
         Round(
-            description = "Let's start by understanding the basics of two important learning methods in AI: supervised and unsupervised learning.",
-            noConfusion = "Supervised learning is when an AI is trained using labeled data. For example, imagine teaching a robot about fruits by showing it labeled pictures of apples or bananas. Unsupervised learning is when the AI figures things out without labels. It might group fruit pictures by color or shape.",
-            productiveConfusion = "Supervised learning involves labels, like showing the robot a picture of an apple and telling it, 'This is an apple.' What do you think happens if there are no labels?",
-            unproductiveConfusion = "Supervised learning uses labeled data. Unsupervised learning doesn’t use labels. Let's move on."
+            description = """
+                Now, we’ll be exploring the basics of supervised and unsupervised learning. 
+                In supervised learning, a machine learns from labeled data. In unsupervised learning, the machine doesn’t have any labels. 
+                Let’s see how it works as we go through some questions. Remember, you can always ask for a hint to help you.
+            """
         ),
         Round(
-            description = "In this round, we'll look at how these learning methods are applied in the real world.",
-            noConfusion = "Supervised learning is used for tasks like spam detection, where you have labeled examples of spam and non-spam emails. Unsupervised learning can help group customers by their behavior when you don’t have predefined categories.",
-            productiveConfusion = "Supervised learning helps with specific predictions. Can you think of where unsupervised learning might be used?",
-            unproductiveConfusion = "Supervised learning is useful for specific tasks. Unsupervised learning is different. Let’s move on.",
-            ),
+            description = """
+                Now, we’ll be exploring the basics of reinforcement learning. 
+                Reinforcement learning is the science of decision making. It is about learning the optimal behavior in an environment to obtain maximum reward.
+                Let’s see how it works as we go through some questions. Remember, you can always ask for a hint to help you.
+            """
+        ),
         Round(
-            description = "Now let's bring these concepts to life with some real-world scenarios.",
-            noConfusion = "Supervised learning is like training a chatbot to recognize specific phrases. Unsupervised learning could help cluster news articles by topic.",
-            productiveConfusion = "If you wanted a chatbot to recognize certain phrases, would that need labels? What about grouping news articles by topic?",
-            unproductiveConfusion = "Supervised learning involves chatbots. Unsupervised learning can cluster data. Let’s move on.",
-        )
+            description = """
+                Let’s move on, now, we’re learning about Generative models. 
+                Generative AI models can take inputs such as text, image, audio, video, and code and generate new content into any of the modalities mentioned.
+                Let’s see how it works as we go through some questions. Remember, you can always ask for a hint to help you.
+            """
+        ),
     )
+
+//    val rounds = listOf(
+//        Round(
+//            description = "Let's start by understanding the basics of two important learning methods in AI: supervised and unsupervised learning.",
+//            noConfusion = "Supervised learning is when an AI is trained using labeled data. For example, imagine teaching a robot about fruits by showing it labeled pictures of apples or bananas. Unsupervised learning is when the AI figures things out without labels. It might group fruit pictures by color or shape.",
+//            productiveConfusion = "Supervised learning involves labels, like showing the robot a picture of an apple and telling it, 'This is an apple.' What do you think happens if there are no labels?",
+//            unproductiveConfusion = "Supervised learning uses labeled data. Unsupervised learning doesn’t use labels. Let's move on."
+//        ),
+//        Round(
+//            description = "In this round, we'll look at how these learning methods are applied in the real world.",
+//            noConfusion = "Supervised learning is used for tasks like spam detection, where you have labeled examples of spam and non-spam emails. Unsupervised learning can help group customers by their behavior when you don’t have predefined categories.",
+//            productiveConfusion = "Supervised learning helps with specific predictions. Can you think of where unsupervised learning might be used?",
+//            unproductiveConfusion = "Supervised learning is useful for specific tasks. Unsupervised learning is different. Let’s move on.",
+//        ),
+//        Round(
+//            description = "Now let's bring these concepts to life with some real-world scenarios.",
+//            noConfusion = "Supervised learning is like training a chatbot to recognize specific phrases. Unsupervised learning could help cluster news articles by topic.",
+//            productiveConfusion = "If you wanted a chatbot to recognize certain phrases, would that need labels? What about grouping news articles by topic?",
+//            unproductiveConfusion = "Supervised learning involves chatbots. Unsupervised learning can cluster data. Let’s move on.",
+//        )
+//    )
 
     val current: Round
         get() = rounds[currentRoundIndex]
@@ -42,7 +66,4 @@ object Rounds {
 
 data class Round(
     val description: String,
-    val noConfusion: String,
-    val productiveConfusion: String,
-    val unproductiveConfusion: String,
 )
