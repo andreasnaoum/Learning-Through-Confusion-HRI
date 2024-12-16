@@ -76,246 +76,168 @@ val questionsRound1 = mutableListOf(
 )
 
 val questionsRound2 = mutableListOf(
-
         Question(
-                "If an AI learns to sort your photos into 'cats' and 'dogs' by looking at labeled pictures, what type of learning is this? 🐶🐱",
-                answer = listOf("Supervised Learning", "Supervised"),
-                noconfusion = "",
-                productiveconfusion = "",
-                unproductiveconfusion = "",
+                "What is the main goal of Reinforcement Learning?",
+                noconfusion = "The main goal of RL is to make decisions that maximize the reward the agent receives over time.",
+                productiveconfusion = "RL is like learning to ride a bike; the agent takes actions, sees what works as feedback, and improves to achieve a goal, like staying balanced.",
+                unproductiveconfusion = "Reinforcement Learning is about learning and involves some kind of trial and error process.",
+                answer = listOf(
+                        "To maximize rewards over time by learning from feedback.",
+                        "To maximize rewards",
+                        "learning from feedback",
+                        "rewards"
+                ),
                 alternatives = listOf(
-                        listOf("Unsupervised Learning"),
-                        listOf("Reinforcement Learning"),
-                        listOf("Generative Learning")
+                        listOf(
+                                "To find an optimal way to solve all problems.",
+                                "solve all problems",
+                                "To find an optimal way",
+                                "optimal way",
+                                "problems"
+                        ),
+                        listOf(
+                                "To create a perfect model of the environment before the agent starts learning.",
+                                "perfect model",
+                                "agent starts learning",
+                                "environment",
+                        ),
+                        listOf(
+                                "To follow a predefined sequence of steps without adapting.",
+                                "without adapting",
+                                "predefined sequence ",
+                                "To follow"
+                        )
                 )
         ),
 
-//        Question(
-//                "In supervised learning, what does the model use to make predictions? 📊",
-//                answer = listOf("Labeled data"),
-//                alternatives = listOf(
-//                        listOf("Unlabeled data"),
-//                        listOf("Random guesses"),
-//                        listOf("Predefined instructions")
-//                )
-//        ),
-//
-//        Question(
-//                "What is the main goal of unsupervised learning? 🤔",
-//                answer = listOf("To find patterns in data without labels"),
-//                alternatives = listOf(
-//                        listOf("To classify data into predefined categories"),
-//                        listOf("To make predictions with labeled data"),
-//                        listOf("To create new labels for the data")
-//                )
-//        ),
-//
-//        Question(
-//                "In supervised learning, what does the model learn from the labeled data? 📚",
-//                answer = listOf("The relationship between input and output"),
-//                alternatives = listOf(
-//                        listOf("Only the input values"),
-//                        listOf("Only the output labels"),
-//                        listOf("Random patterns")
-//                )
-//        )
+        Question(
+                "What is the difference between an agent and its environment in Reinforcement Learning?",
+                noconfusion = "The agent is the decision-maker, and the environment reacts to those decisions by giving feedback.",
+                productiveconfusion = "Think of a robot exploring a room. The agent is the robot itself (its brain and sensors), and the environment is everything outside the robot (the walls, floor, obstacles).",
+                unproductiveconfusion = "The agent and environment interact in ways that are system-dependent.",
+                answer = listOf(
+                        "The agent takes actions, and the environment provides feedback based on these actions.",
+                        "agent takes actions",
+                        "environment provides feedback",
+                        "these actions"
+                ),
+                alternatives = listOf(
+                        listOf(
+                                "The agent creates the environment.",
+                                "agent creates the environment",
+                                "creates the environment",
+                                "agent creates "
+                        ),
+                        listOf(
+                                "The agent and the environment have the same functions and roles.",
+                                "The agent and the environment",
+                                "same functions and roles",
+                                "roles",
+                        ),
+                        listOf(
+                                "The environment learns from the agent’s actions, not the other way around.",
+                                "environment learns",
+                                "agent’s actions ",
+                                "not the other way around"
+                        )
+                )
+        ),
+
+        Question(
+                "What is a policy in Reinforcement Learning?",
+                noconfusion = "A policy is the set of rules the agent follows to choose actions based on the situation.",
+                productiveconfusion = "A policy is like a strategy in chess that tells you which move to make depending on the board's current state.",
+                unproductiveconfusion = "A policy is like a strategy in chess that tells you which move to make depending on the board's current state.",
+                answer = listOf(
+                        "A rule or function that governs the agent’s actions in different situations",
+                        "function that governs"
+                ),
+                alternatives = listOf(
+                        listOf(
+                                "A way to track the rewards the agent receives over time.",
+                                "agent receives over time",
+                                "way to track"
+                        ),
+                        listOf(
+                                "A map of the environment that the agent navigates",
+                                "map of the environment",
+                                "agent navigates"
+                        ),
+                        listOf(
+                                "A strategy the agent uses to maximize its penalty in a given environment.",
+                                "A strategy the agent",
+                                "uses to maximize",
+                                "penalty"
+                        ),
+                )
+        ),
 )
 
 val questionsRound3 = mutableListOf(
-//        Question(
-//                "What does AI stand for? 🤖",
-//                answer = listOf("Artificial Intelligence", "AI"),
-//                alternatives = listOf(
-//                        listOf("Awesome Intelligence"),
-//                        listOf("Amazing Insights"),
-//                        listOf("Advanced Innovation")
-//                )
-//        ),
-//
-//        Question(
-//                "If an AI learns to sort your photos into 'cats' and 'dogs' by looking at labeled pictures, what type of learning is this? 🐶🐱",
-//                answer = listOf("Supervised Learning", "Supervised"),
-//                alternatives = listOf(
-//                        listOf("Unsupervised Learning"),
-//                        listOf("Reinforcement Learning"),
-//                        listOf("Generative Learning")
-//                )
-//        ),
 
         Question(
-                "In supervised learning, what does the model use to make predictions? 📊",
-                noconfusion = "",
-                productiveconfusion = "",
-                unproductiveconfusion = "",
-                answer = listOf("Labeled data"),
+                "What makes a Generative Model different from a Discriminative Model?",
+                noconfusion = "The main difference is that a Generative Model wants to generate new data.",
+                productiveconfusion = "Discriminate models focus mostly on classification tasks.",
+                unproductiveconfusion = "Generative Models and Discriminative Models can be trained on the same dataset",
+                answer = listOf("Generative models focus on creating new data", "new data"),
                 alternatives = listOf(
-                        listOf("Unlabeled data"),
-                        listOf("Random guesses"),
-                        listOf("Predefined instructions")
+                        listOf(
+                                "Generative models are used only for classification tasks",
+                                "classification tasks",
+                        ),
+                        listOf(
+                                "Generative models only use labeled data",
+                                "labeled data"
+                        ),
+                        listOf(
+                                "Generative models can only be used in supervised learning",
+                                "supervised learning"
+                        )
+                ),
+        ),
+
+        Question(
+                "What is one of the goals of a Generative Model?",
+                noconfusion = "When you show a computer labeled examples—like the letter ‘a’ with the label alpha—you’re essentially supervising it by providing the correct answers to learn from",
+                productiveconfusion = "This learning involves giving the computer clear examples with the answers already labeled so it can learn from them.",
+                unproductiveconfusion = "This involves the computer learning with labeled data",
+                answer = listOf(
+                        "To generate new data based on the patterns learned from the training data.",
+                        "patterns",
+                        "learned",
+                ),
+                alternatives = listOf(
+                        listOf(
+                                "To classify unseen data based on input features",
+                                "classify",
+                                "input features",
+                        ),
+                        listOf(
+                                "To generate new data that is as similar as possible to the training data",
+                                "similar",
+                                "possible",
+                        ),
+                        listOf(
+                                "To predict unseen data",
+                                "unseen data",
+                                "predict",
+                        )
                 )
         ),
 
-//        Question(
-//                "What is the main goal of unsupervised learning? 🤔",
-//                answer = listOf("To find patterns in data without labels"),
-//                alternatives = listOf(
-//                        listOf("To classify data into predefined categories"),
-//                        listOf("To make predictions with labeled data"),
-//                        listOf("To create new labels for the data")
-//                )
-//        ),
-//
-//        Question(
-//                "In supervised learning, what does the model learn from the labeled data? 📚",
-//                answer = listOf("The relationship between input and output"),
-//                alternatives = listOf(
-//                        listOf("Only the input values"),
-//                        listOf("Only the output labels"),
-//                        listOf("Random patterns")
-//                )
-//        )
-)
+        Question(
+                "How does a Generative Model learn?",
+                noconfusion = "It learns by calculating the underlying structure of what it's being trained on.",
+                productiveconfusion = "It learns by approximating an imaginary dataset structure compared to the one it is trained on.",
+                unproductiveconfusion = "It learns by understanding what should come next based on the dataset.",
+                answer = listOf("By understanding the underlying distribution of the input data", "understanding"),
+                alternatives = listOf(
+                        listOf("By learning all the data points on the data it was trained on", "data points"),
+                        listOf("By minimizing the model's output error over time", "minimizing"),
+                        listOf("By learning the distribution of the data it generates", "distribution"),
+                )
+        ),
 
-//val questionsAI = mutableListOf(
-//        // Super simple starter question
-//        Question("What does AI stand for? 🤖",
-//                answer = listOf("Artificial Intelligence", "AI"),
-//                alternatives = listOf(listOf("Awesome Intelligence"), listOf("Amazing Insights"), listOf("Advanced Innovation"))),
-//
-//        // Relatable example
-//        Question("If an AI learns to sort your photos into 'cats' and 'dogs' by looking at labeled pictures, what type of learning is this? 🐶🐱",
-//                answer = listOf("Supervised Learning", "Supervised"),
-//                alternatives = listOf(listOf("Unsupervised Learning"), listOf("Reinforcement Learning"), listOf("Generative Learning"))),
-//
-//        // Fun analogy
-//        Question("If an AI groups similar songs together on a playlist without labels, what type of learning is it using? 🎶",
-//                answer = listOf("Unsupervised Learning", "Unsupervised"),
-//                alternatives = listOf(listOf("Supervised Learning"), listOf("Reinforcement Learning"), listOf("Clustering"))),
-//
-//        // Accessible and simple
-//        Question("What kind of AI recommends movies on Netflix based on what you've already watched? 🎥🍿",
-//                answer = listOf("Supervised Learning", "Supervised"),
-//                alternatives = listOf(listOf("Unsupervised Learning"), listOf("Reinforcement Learning"), listOf("Decision Trees"))),
-//
-//        // Playful and beginner-friendly
-//        Question("If an AI learns from trial and error, like a robot learning to play soccer, what type of learning is it using? ⚽🤖",
-//                answer = listOf("Reinforcement Learning", "Reinforcement"),
-//                alternatives = listOf(listOf("Supervised Learning"), listOf("Unsupervised Learning"), listOf("Clustering"))),
-//
-//        // Relatable shopping example
-//        Question("When an AI groups customers with similar shopping habits to suggest products, what type of learning is this? 🛍️",
-//                answer = listOf("Unsupervised Learning", "Unsupervised"),
-//                alternatives = listOf(listOf("Supervised Learning"), listOf("Reinforcement Learning"), listOf("Transfer Learning"))),
-//
-//        // Fun and engaging
-//        Question("Which learning type uses labeled data, like 'This is a pizza, this is a burger'? 🍕🍔",
-//                answer = listOf("Supervised Learning", "Supervised"),
-//                alternatives = listOf(listOf("Unsupervised Learning"), listOf("Reinforcement Learning"), listOf("Generative Learning"))),
-//
-//        // Accessible with a touch of humor
-//        Question("If an AI creates funny captions for photos without help, what type of AI might it be? 📸😂",
-//                answer = listOf("Generative AI", "Generative"),
-//                alternatives = listOf(listOf("Supervised Learning"), listOf("Clustering"), listOf("Reinforcement Learning"))),
-//
-//        // Real-world application
-//        Question("What type of learning helps AI create clusters of similar-looking shirts when shopping online? 👕🛒",
-//                answer = listOf("Unsupervised Learning", "Clustering"),
-//                alternatives = listOf(listOf("Supervised Learning"), listOf("Reinforcement Learning"), listOf("Decision Trees"))),
-//
-//        // Easy-to-grasp comparison
-//        Question("If an AI predicts tomorrow’s weather based on labeled historical data, what learning type is it using? 🌦️",
-//                answer = listOf("Supervised Learning", "Supervised"),
-//                alternatives = listOf(listOf("Unsupervised Learning"), listOf("Reinforcement Learning"), listOf("Neural Networks"))),
-//
-//        // Fun and intuitive
-//        Question("If an AI groups your vacation photos into 'beach,' 'mountains,' and 'city' without labels, what learning type is this? 🌴⛰️🏙️",
-//                answer = listOf("Unsupervised Learning", "Unsupervised"),
-//                alternatives = listOf(listOf("Supervised Learning"), listOf("Reinforcement Learning"), listOf("Generative AI"))),
-//
-//        // Accessible reinforcement learning example
-//        Question("When an AI wins a video game by trying, failing, and improving its strategy, what learning type is this? 🎮",
-//                answer = listOf("Reinforcement Learning", "Reinforcement"),
-//                alternatives = listOf(listOf("Supervised Learning"), listOf("Unsupervised Learning"), listOf("Transfer Learning"))),
-//
-//        // Engaging with a bit of challenge
-//        Question("What does clustering mean in AI? 🤔",
-//                answer = listOf("Grouping similar items together", "Grouping", "Clusters"),
-//                alternatives = listOf(listOf("Classifying items"), listOf("Predicting outcomes"), listOf("Finding rewards"))),
-//
-//        // Fun finale
-//        Question("If an AI can recognize your face in a photo, what kind of learning is behind it? 📸🙂",
-//                answer = listOf("Supervised Learning", "Supervised"),
-//                alternatives = listOf(listOf("Unsupervised Learning"), listOf("Reinforcement Learning"), listOf("Decision Trees")))
-//)
-//
-//val questionsEnglish = mutableListOf(
-//        // Super simple starter question
-//        Question("What does AI stand for? 🤖",
-//                answer = listOf("Artificial Intelligence", "AI"),
-//                alternatives = listOf(listOf("Awesome Intelligence"), listOf("Amazing Insights"), listOf("Advanced Innovation"))),
-//
-//        // Relatable example
-//        Question("If an AI learns to sort your photos into 'cats' and 'dogs' by looking at labeled pictures, what type of learning is this? 🐶🐱",
-//                answer = listOf("Supervised Learning", "Supervised"),
-//                alternatives = listOf(listOf("Unsupervised Learning"), listOf("Reinforcement Learning"), listOf("Generative Learning"))),
-//
-//        // Fun analogy
-//        Question("If an AI groups similar songs together on a playlist without labels, what type of learning is it using? 🎶",
-//                answer = listOf("Unsupervised Learning", "Unsupervised"),
-//                alternatives = listOf(listOf("Supervised Learning"), listOf("Reinforcement Learning"), listOf("Clustering"))),
-//
-//        // Accessible and simple
-//        Question("What kind of AI recommends movies on Netflix based on what you've already watched? 🎥🍿",
-//                answer = listOf("Supervised Learning", "Supervised"),
-//                alternatives = listOf(listOf("Unsupervised Learning"), listOf("Reinforcement Learning"), listOf("Decision Trees"))),
-//
-//        // Playful and beginner-friendly
-//        Question("If an AI learns from trial and error, like a robot learning to play soccer, what type of learning is it using? ⚽🤖",
-//                answer = listOf("Reinforcement Learning", "Reinforcement"),
-//                alternatives = listOf(listOf("Supervised Learning"), listOf("Unsupervised Learning"), listOf("Clustering"))),
-//
-//        // Relatable shopping example
-//        Question("When an AI groups customers with similar shopping habits to suggest products, what type of learning is this? 🛍️",
-//                answer = listOf("Unsupervised Learning", "Unsupervised"),
-//                alternatives = listOf(listOf("Supervised Learning"), listOf("Reinforcement Learning"), listOf("Transfer Learning"))),
-//
-//        // Fun and engaging
-//        Question("Which learning type uses labeled data, like 'This is a pizza, this is a burger'? 🍕🍔",
-//                answer = listOf("Supervised Learning", "Supervised"),
-//                alternatives = listOf(listOf("Unsupervised Learning"), listOf("Reinforcement Learning"), listOf("Generative Learning"))),
-//
-//        // Accessible with a touch of humor
-//        Question("If an AI creates funny captions for photos without help, what type of AI might it be? 📸😂",
-//                answer = listOf("Generative AI", "Generative"),
-//                alternatives = listOf(listOf("Supervised Learning"), listOf("Clustering"), listOf("Reinforcement Learning"))),
-//
-//        // Real-world application
-//        Question("What type of learning helps AI create clusters of similar-looking shirts when shopping online? 👕🛒",
-//                answer = listOf("Unsupervised Learning", "Clustering"),
-//                alternatives = listOf(listOf("Supervised Learning"), listOf("Reinforcement Learning"), listOf("Decision Trees"))),
-//
-//        // Easy-to-grasp comparison
-//        Question("If an AI predicts tomorrow’s weather based on labeled historical data, what learning type is it using? 🌦️",
-//                answer = listOf("Supervised Learning", "Supervised"),
-//                alternatives = listOf(listOf("Unsupervised Learning"), listOf("Reinforcement Learning"), listOf("Neural Networks"))),
-//
-//        // Fun and intuitive
-//        Question("If an AI groups your vacation photos into 'beach,' 'mountains,' and 'city' without labels, what learning type is this? 🌴⛰️🏙️",
-//                answer = listOf("Unsupervised Learning", "Unsupervised"),
-//                alternatives = listOf(listOf("Supervised Learning"), listOf("Reinforcement Learning"), listOf("Generative AI"))),
-//
-//        // Accessible reinforcement learning example
-//        Question("When an AI wins a video game by trying, failing, and improving its strategy, what learning type is this? 🎮",
-//                answer = listOf("Reinforcement Learning", "Reinforcement"),
-//                alternatives = listOf(listOf("Supervised Learning"), listOf("Unsupervised Learning"), listOf("Transfer Learning"))),
-//
-//        // Engaging with a bit of challenge
-//        Question("What does clustering mean in AI? 🤔",
-//                answer = listOf("Grouping similar items together", "Grouping", "Clusters"),
-//                alternatives = listOf(listOf("Classifying items"), listOf("Predicting outcomes"), listOf("Finding rewards"))),
-//
-//        // Fun finale
-//        Question("If an AI can recognize your face in a photo, what kind of learning is behind it? 📸🙂",
-//                answer = listOf("Supervised Learning", "Supervised"),
-//                alternatives = listOf(listOf("Unsupervised Learning"), listOf("Reinforcement Learning"), listOf("Decision Trees")))
-//)
+
+)

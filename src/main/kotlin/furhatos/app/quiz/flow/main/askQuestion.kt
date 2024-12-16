@@ -99,15 +99,18 @@ val AskQuestion: State = state(parent = Parent) {
         if (++rounds >= maxQuestions) {
             val correct2 = utterance {
                 + Gestures.BigSmile(strength = 2.0, duration = 2.0)
-                + "That was the last question!"
+                + "That was the last question for this round!"
             }
             furhat.say(correct2)
             furhat.say("Your final score is ${users.current.quiz.score}")
-            val correct3 = utterance {
-                + Gestures.Smile(strength = 2.0, duration = 3.0)
-                + "It looks like you're enjoying the game. I'm glad about it! See you around!"
-            }
-            furhat.say(correct3)
+
+
+
+//            val correct3 = utterance {
+//                + Gestures.Smile(strength = 2.0, duration = 3.0)
+//                + "It looks like you're enjoying the game. I'm glad about it! See you around!"
+//            }
+//            furhat.say(correct3)
 
             goto(NewGame)
         } else {

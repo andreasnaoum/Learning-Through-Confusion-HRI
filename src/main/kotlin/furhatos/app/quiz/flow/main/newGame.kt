@@ -30,7 +30,7 @@ val NewGame = state(parent = Parent) {
             if (Rounds.currentRoundIndex < 1) {
                 val initial_speak = utterance {
                     + Gestures.Smile(strength=2.0, duration=1.5)
-                    + "We’ll be exploring basic AI concepts."
+                    + "Let's the game begin!"
                 }
                 furhat.say(initial_speak)
             }
@@ -39,29 +39,16 @@ val NewGame = state(parent = Parent) {
             furhat.say(currentRound.description)
             delay(1000)
 
-//            when (scenario) {
-//                0 -> { // No Confusion
-//                    furhat.say(currentRound.noConfusion)
-//                }
-//                1 -> { // Productive Confusion
-//                    furhat.say(currentRound.productiveConfusion)
-//                }
-//                2 -> { // Unproductive Confusion
-//                    furhat.say(currentRound.unproductiveConfusion)
-//                }
-//            }
             delay(1000)
             when (Rounds.currentRoundIndex) {
 
                 0 -> { // Questions for Round 1
                     val initial_speak = utterance {
-                        + Gestures.Thoughtful(strength=2.0, duration=1.5)
-                        + "Alright, ready for some challenging questions? Otherwise, I can repeat the information."
+                        +Gestures.Thoughtful(strength = 2.0, duration = 1.5)
+                        +"Alright, ready for some challenging questions? Otherwise, I can repeat the information."
                     }
                     furhat.ask(initial_speak)
                 }
-
-
 
                 1 -> { // Questions for Round 2
                     furhat.ask("This might be tricky, but I believe you can handle it! Ready?")
@@ -82,7 +69,7 @@ val NewGame = state(parent = Parent) {
             0 -> { // Questions for Round 1
                 val initial_speak = utterance {
                     + Gestures.Smile(strength=2.0, duration=1.5)
-                    + "Let's start!"
+                    + "Let's start! Remember, you can always ask for a hint."
                 }
                 furhat.say(initial_speak)
 
