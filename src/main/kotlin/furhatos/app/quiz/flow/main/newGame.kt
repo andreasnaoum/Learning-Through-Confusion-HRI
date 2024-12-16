@@ -56,11 +56,12 @@ val NewGame = state(parent = Parent) {
                 0 -> { // Questions for Round 1
                     val initial_speak = utterance {
                         + Gestures.Thoughtful(strength=2.0, duration=1.5)
-                        + "Alright, ready for some challenging questions?"
+                        + "Alright, ready for some challenging questions? Otherwise, I can repeat the information."
                     }
-                    furhat.say(initial_speak)
-                    furhat.ask("Otherwise, I can repeat the information.")
+                    furhat.ask(initial_speak)
                 }
+
+
 
                 1 -> { // Questions for Round 2
                     furhat.ask("This might be tricky, but I believe you can handle it! Ready?")

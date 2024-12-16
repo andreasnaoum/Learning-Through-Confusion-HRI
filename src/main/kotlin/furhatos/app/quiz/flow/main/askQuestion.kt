@@ -21,9 +21,6 @@ val AskQuestion: State = state(parent = Parent) {
         questionSet = questions
         failedAttempts = 0
 
-        print("Scenario 1")
-        print(scenario)
-
         // Set speech rec phrases based on the current question's answers
         if (questionSet != null) {
             furhat.setSpeechRecPhrases(questionSet!!.current.speechPhrases)
@@ -124,13 +121,13 @@ val AskQuestion: State = state(parent = Parent) {
         when (scenario) {
             0 -> { // No Confusion
                 print("INSIDEEE")
-                furhat.say(questionSet!!.current.noConfusionHint)
+                furhat.ask(questionSet!!.current.noConfusionHint)
             }
             1 -> { // Productive Confusion
-                furhat.say(questionSet!!.current.productiveConfusionHint)
+                furhat.ask(questionSet!!.current.productiveConfusionHint)
             }
             2 -> { // Unproductive Confusion
-                furhat.say(questionSet!!.current.unproductiveConfusionHint)
+                furhat.ask(questionSet!!.current.unproductiveConfusionHint)
             }
         }
     }
