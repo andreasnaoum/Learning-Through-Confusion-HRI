@@ -2,30 +2,30 @@ package furhatos.app.quiz.flow.main
 
 import furhatos.app.quiz.flow.Parent
 import furhatos.app.quiz.questions.*
-import furhatos.app.quiz.setting.playing
-import furhatos.app.quiz.setting.attending
-import furhatos.app.quiz.setting.quiz
+import furhatos.app.quiz.setting.*
 import furhatos.gestures.Gestures
-
-import furhatos.app.quiz.setting.scenario
 import furhatos.flow.kotlin.*
 import furhatos.nlu.common.No
 import furhatos.nlu.common.Yes
-import furhatos.skills.emotions.UserGestures
-//import furhatos.app.quiz.flow.main.Attention
 
+var maxRounds = 1
 
-// The game logic inside the state
-val NewGame = state(parent = Parent) {
+val NewGame: State = state(parent = Parent) {
 
-    var speaking = false
-    var said_enjoy = false
+    val PARTICIPANT_ID = "01" // Change this for each participant
 
     onEntry {
         playing = true
         delay(2000)
 
-        while (Rounds.currentRoundIndex < 3) {
+        // Initialize game metrics at the start
+        users.current.quiz.gameMetrics.gameStartTime = System.currentTimeMillis()
+
+        while (Rounds.currentRoundIndex < maxRounds) {
+            // Initialize round metrics for each round
+            val newRoundMetrics = RoundMetrics()
+            newRoundMetrics.roundStartTime = System.currentTimeMillis()
+            users.current.quiz.gameMetrics.roundMetrics[Rounds.currentRoundIndex] = newRoundMetrics
 
             if (Rounds.currentRoundIndex < 1) {
                 val initial_speak = utterance {
@@ -39,54 +39,47 @@ val NewGame = state(parent = Parent) {
             furhat.say(currentRound.description)
             delay(1000)
 
-            delay(1000)
             when (Rounds.currentRoundIndex) {
-
-                0 -> { // Questions for Round 1
+                0 -> {
                     val initial_speak = utterance {
                         +Gestures.Thoughtful(strength = 2.0, duration = 1.5)
                         +"Alright, ready for some challenging questions? Otherwise, I can repeat the information."
                     }
                     furhat.ask(initial_speak)
                 }
-
-                1 -> { // Questions for Round 2
+                1 -> {
                     furhat.ask("This might be tricky, but I believe you can handle it! Ready?")
                 }
-
-                2 -> { // Questions for Round 3
+                2 -> {
                     furhat.ask("This part is tricky, but let's push through! Ready?")
                 }
             }
-            speaking = false
         }
+
+        val gameMetrics = users.current.quiz.gameMetrics
+        saveResultsToFile(PARTICIPANT_ID, gameMetrics, users.current.quiz.score)
     }
 
     onResponse<Yes> {
-
         when (Rounds.currentRoundIndex) {
-
-            0 -> { // Questions for Round 1
+            0 -> {
                 val initial_speak = utterance {
                     + Gestures.Smile(strength=2.0, duration=1.5)
                     + "Let's start! Remember, you can always ask for a hint."
                 }
                 furhat.say(initial_speak)
-
                 questions = QuestionSet(questionsRound1)
                 questions!!.next()
                 Rounds.next()
                 goto(AskQuestion)
             }
-
-            1 -> { // Questions for Round 2
+            1 -> {
                 questions = QuestionSet(questionsRound2)
                 questions!!.next()
                 Rounds.next()
                 goto(AskQuestion)
             }
-
-            2 -> { // Questions for Round 3
+            2 -> {
                 questions = QuestionSet(questionsRound3)
                 questions!!.next()
                 Rounds.next()

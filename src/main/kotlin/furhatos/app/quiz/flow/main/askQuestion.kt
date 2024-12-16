@@ -3,139 +3,116 @@ package furhatos.app.quiz.flow.main
 import furhatos.app.quiz.*
 import furhatos.app.quiz.flow.Parent
 import furhatos.app.quiz.questions.QuestionSet
-import furhatos.app.quiz.questions.questionsRound1
 import furhatos.app.quiz.setting.*
 import furhatos.flow.kotlin.*
 import furhatos.gestures.Gestures
-import furhatos.nlu.common.No
 import furhatos.nlu.common.RequestRepeat
-import furhatos.nlu.common.Yes
-import furhatos.records.Location
-import furhatos.skills.emotions.UserGestures
+
 
 val AskQuestion: State = state(parent = Parent) {
     var questionSet: QuestionSet? = null
     var failedAttempts = 0
-
-    var questionStartTime: Long = 0 // Track when question was asked
+    var currentQuestionIndex = 1
 
     onEntry {
         questionSet = questions
         failedAttempts = 0
 
-        // Set speech rec phrases based on the current question's answers
-        if (questionSet != null) {
-            furhat.setSpeechRecPhrases(questionSet!!.current.speechPhrases)
+        val currentRoundMetrics = users.current.quiz.gameMetrics.roundMetrics.getOrPut(Rounds.currentRoundIndex - 1) {
+            RoundMetrics().apply {
+                roundStartTime = System.currentTimeMillis()
+            }
         }
 
-        // Ask the question followed by the options
-        if (questionSet != null) {
-            furhat.ask(questionSet!!.current.text + " " + questionSet!!.current.getOptionsString())
+        val newQuestionMetrics = QuestionMetrics()
+        newQuestionMetrics.startTime = System.currentTimeMillis()
+        currentRoundMetrics.questionMetrics[currentQuestionIndex] = newQuestionMetrics
 
-            // Start the timer when asking the question
-            questionStartTime = System.currentTimeMillis()
+        if (questionSet != null) {
+            furhat.setSpeechRecPhrases(questionSet!!.current.speechPhrases)
+            furhat.ask(questionSet!!.current.text + " " + questionSet!!.current.getOptionsString())
         }
     }
 
-    // Here we re-state the question
     onReentry {
         failedAttempts = 0
+
+        // Track repeat request
+        val currentMetrics = users.current.quiz.gameMetrics
+            .roundMetrics[Rounds.currentRoundIndex - 1]!!
+            .questionMetrics[currentQuestionIndex]!!
+        currentMetrics.repeatRequests++
+
         if (questionSet != null) {
             val greeting = utterance {
                 + Gestures.Smile(strength = 2.0, duration = 6.0)
                 + "Oh absolutely! Let me repeat, ${questionSet!!.current.text} ${questionSet!!.current.getOptionsString()}"
             }
             furhat.ask(greeting)
-
-            // Reset timer on question repeat
-            questionStartTime = System.currentTimeMillis()
         }
     }
 
-    // User is answering with any of the alternatives
     onResponse<AnswerOption> {
         val answer = it.intent
+        val currentRoundMetrics = users.current.quiz.gameMetrics.roundMetrics[Rounds.currentRoundIndex - 1]!!
+        val currentQuestionMetrics = currentRoundMetrics.questionMetrics[currentQuestionIndex]!!
 
-        // Calculate time taken to answer
-        val timeTaken = System.currentTimeMillis() - questionStartTime
-        val secondsTaken = timeTaken / 1000.0 // Convert to seconds
+        // Record metrics
+        currentQuestionMetrics.endTime = System.currentTimeMillis()
+        currentQuestionMetrics.timeTaken = (currentQuestionMetrics.endTime - currentQuestionMetrics.startTime) / 1000.0
+        currentQuestionMetrics.attempts = failedAttempts + 1
+        currentQuestionMetrics.isCorrect = answer.correct
 
-        print("Time needed to answer: $secondsTaken \n")
-
-        // If the user answers correct, we up the user's score and congratulates the user
         if (answer.correct) {
+            currentRoundMetrics.correctAnswers++
             furhat.gesture(Gestures.Nod)
             users.current.quiz.score++
 
-            if (users.current.quiz.score == 1) {
-                val correct = utterance {
-                    + Gestures.Smile(strength = 2.0, duration = 6.0)
-                    + "You nailed it! That was the ${furhat.voice.emphasis("right")}  answer, you now have a score of ${users.current.quiz.score}"
-                }
-                furhat.say(correct)
-            } else if (users.current.quiz.score == 2) {
-                val correct = utterance {
-                    + glance(Location.LEFT)
-                    + "Are you an AI expert? That was the ${furhat.voice.emphasis("right")}  answer, you now have a score of ${users.current.quiz.score}"
-                }
-                furhat.say(correct)
-            } else {
-                val correct = utterance {
-                    + Gestures.Smile(strength = 2.0, duration = 6.0)
-                    + "Nice! That was the ${furhat.voice.emphasis("right")}  answer, you now have a score of ${users.current.quiz.score}"
-                }
-                furhat.say(correct)
+            val scoreMessage = when (users.current.quiz.score) {
+                1 -> "You nailed it! That was the ${furhat.voice.emphasis("right")} answer!"
+                2 -> "Are you an AI expert? That was the ${furhat.voice.emphasis("right")} answer!"
+                else -> "Nice! That was the ${furhat.voice.emphasis("right")} answer!"
             }
+
+            furhat.say(scoreMessage)
+
         } else {
             furhat.gesture(Gestures.Shake)
             val bad1 = utterance {
                 + Gestures.BrowFrown(strength = 2.0, duration = 6.0)
-                + "Sorry! That was ${furhat.voice.emphasis("not")} correct\"}"
+                + "Sorry! That was ${furhat.voice.emphasis("not")} correct."
             }
             furhat.say(bad1)
 
-            // Keep track of what users answered what question so that we don't ask the same user
             if (questionSet != null) {
                 users.current.quiz.questionsAsked.add(questionSet!!.current.text)
             }
 
-            val availableUsers = questionSet?.current?.let { it1 -> users.notQuestioned(it1.text) }
-            if (availableUsers != null) {
-                if (!availableUsers.isEmpty()) {
-                    furhat.attend(availableUsers.first())
-                    shouldChangeUser = false
-                    furhat.ask("Maybe you know the answer?")
-                }
-            }
         }
 
-        // Check if the game has ended and if not, goes to a new question
-        if (++rounds >= maxQuestions) {
-            val correct2 = utterance {
-                + Gestures.BigSmile(strength = 2.0, duration = 2.0)
-                + "That was the last question for this round!"
-            }
-            furhat.say(correct2)
-            furhat.say("Your final score is ${users.current.quiz.score}")
-
+        if (!questions!!.hasMoreQuestions()) {
+            currentRoundMetrics.roundEndTime = System.currentTimeMillis()
+            currentRoundMetrics.totalRoundTime = (currentRoundMetrics.roundEndTime - currentRoundMetrics.roundStartTime) / 1000.0
+            val roundSummary = "Round ${Rounds.currentRoundIndex} completed with ${currentRoundMetrics.correctAnswers} correct answers!"
+            furhat.say(roundSummary)
             goto(NewGame)
         } else {
+            ++currentQuestionIndex
             goto(NewQuestion)
         }
     }
 
     onResponse<RequestHint> {
+        val currentMetrics = users.current.quiz.gameMetrics
+            .roundMetrics[Rounds.currentRoundIndex - 1]!!
+            .questionMetrics[currentQuestionIndex]!!
+        currentMetrics.hintsUsed++
+
         furhat.say("Okay, let me help you!")
         when (scenario) {
-            0 -> { // No Confusion
-                furhat.ask(questionSet!!.current.noConfusionHint)
-            }
-            1 -> { // Productive Confusion
-                furhat.ask(questionSet!!.current.productiveConfusionHint)
-            }
-            2 -> { // Unproductive Confusion
-                furhat.ask(questionSet!!.current.unproductiveConfusionHint)
-            }
+            0 -> furhat.ask(questionSet!!.current.noConfusionHint)
+            1 -> furhat.ask(questionSet!!.current.productiveConfusionHint)
+            2 -> furhat.ask(questionSet!!.current.unproductiveConfusionHint)
         }
     }
 
@@ -150,36 +127,22 @@ val AskQuestion: State = state(parent = Parent) {
         }
     }
 
-    // The user wants to hear the options again
     onResponse<RequestRepeatOptions> {
         furhat.gesture(Gestures.Surprise)
         random(
-                {
-                    if (questionSet != null) {
-                        furhat.ask("They are ${questionSet!!.current.getOptionsString()}")
-                    }
-                },
-                {
-                    if (questionSet != null) {
-                        furhat.ask(questionSet!!.current.getOptionsString())
-                    }
-                }
+            { furhat.ask("They are ${questionSet!!.current.getOptionsString()}") },
+            { furhat.ask(questionSet!!.current.getOptionsString()) }
         )
     }
 
-    // If we don't get any response, we assume the user was too slow
     onNoResponse {
         random(
-                { furhat.say("Too slow! Here comes the next question") },
-                { furhat.say("A bit too slow amigo! Get ready for the next question") }
+            { furhat.say("Too slow! Here comes the next question") },
+            { furhat.say("A bit too slow amigo! Get ready for the next question") }
         )
         goto(NewQuestion)
     }
 
-    /* If we get a response that doesn't map to any alternative or any of the above handlers,
-        we track how many times this has happened in a row and give them two more attempts and
-        finally moving on if we still don't get it.
-     */
     onResponse {
         failedAttempts++
         when (failedAttempts) {
@@ -205,7 +168,6 @@ val NewQuestion = state(parent = Parent) {
 
     onEntry {
         questionSet = questions
-        // Ask new question
         questionSet?.next()
         goto(AskQuestion)
     }

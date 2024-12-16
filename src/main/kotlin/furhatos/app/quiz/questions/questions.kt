@@ -6,17 +6,37 @@ import furhatos.nlu.TextBuilder
 import java.util.*
 
 class QuestionSet(val questions: List<Question>) {
-    var count: Int = 0
-    var current: Question = questions.first()
+    private var currentIndex: Int = -1  // Start at -1
+    lateinit var current: Question
 
-    fun next() {
-        count++
-        if (count >= questions.size)
-            count = 0
-        current = questions[count]
+    fun next(): Boolean {
+        currentIndex++
+        if (currentIndex >= questions.size) {
+            return false
+        }
+        current = questions[currentIndex]
         AnswerOption().forget()
+        return true
+    }
+
+    // Add this to check if we have more questions
+    fun hasMoreQuestions(): Boolean {
+        return currentIndex + 1 <= questions.size - 1
     }
 }
+
+//class QuestionSet(val questions: List<Question>) {
+//    var count: Int = 0
+//    var current: Question = questions.first()
+//
+//    fun next() {
+//        count++
+//        if (count >= questions.size)
+//            count = 0
+//        current = questions[count]
+//        AnswerOption().forget()
+//    }
+//}
 
 /**
  * The question class gets the following parameters:

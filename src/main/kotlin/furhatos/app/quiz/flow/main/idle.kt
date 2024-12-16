@@ -53,8 +53,7 @@ val Idle: State = state {
 
 // Variables
 
-val maxQuestions = 3
-var rounds = 0
+val maxQuestions = 2
 var shouldChangeUser = true
 var playing = false
 var attending = false
