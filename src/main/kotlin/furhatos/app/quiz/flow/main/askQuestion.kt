@@ -17,6 +17,8 @@ val AskQuestion: State = state(parent = Parent) {
     var questionSet: QuestionSet? = null
     var failedAttempts = 0
 
+    var questionStartTime: Long = 0 // Track when question was asked
+
     onEntry {
         questionSet = questions
         failedAttempts = 0
@@ -29,6 +31,9 @@ val AskQuestion: State = state(parent = Parent) {
         // Ask the question followed by the options
         if (questionSet != null) {
             furhat.ask(questionSet!!.current.text + " " + questionSet!!.current.getOptionsString())
+
+            // Start the timer when asking the question
+            questionStartTime = System.currentTimeMillis()
         }
     }
 
@@ -41,12 +46,21 @@ val AskQuestion: State = state(parent = Parent) {
                 + "Oh absolutely! Let me repeat, ${questionSet!!.current.text} ${questionSet!!.current.getOptionsString()}"
             }
             furhat.ask(greeting)
+
+            // Reset timer on question repeat
+            questionStartTime = System.currentTimeMillis()
         }
     }
 
     // User is answering with any of the alternatives
     onResponse<AnswerOption> {
         val answer = it.intent
+
+        // Calculate time taken to answer
+        val timeTaken = System.currentTimeMillis() - questionStartTime
+        val secondsTaken = timeTaken / 1000.0 // Convert to seconds
+
+        print("Time needed to answer: $secondsTaken \n")
 
         // If the user answers correct, we up the user's score and congratulates the user
         if (answer.correct) {
@@ -104,14 +118,6 @@ val AskQuestion: State = state(parent = Parent) {
             furhat.say(correct2)
             furhat.say("Your final score is ${users.current.quiz.score}")
 
-
-
-//            val correct3 = utterance {
-//                + Gestures.Smile(strength = 2.0, duration = 3.0)
-//                + "It looks like you're enjoying the game. I'm glad about it! See you around!"
-//            }
-//            furhat.say(correct3)
-
             goto(NewGame)
         } else {
             goto(NewQuestion)
@@ -120,10 +126,8 @@ val AskQuestion: State = state(parent = Parent) {
 
     onResponse<RequestHint> {
         furhat.say("Okay, let me help you!")
-        print("Scenario " + scenario)
         when (scenario) {
             0 -> { // No Confusion
-                print("INSIDEEE")
                 furhat.ask(questionSet!!.current.noConfusionHint)
             }
             1 -> { // Productive Confusion
