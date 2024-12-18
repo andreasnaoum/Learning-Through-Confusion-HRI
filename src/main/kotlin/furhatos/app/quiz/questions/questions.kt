@@ -23,6 +23,11 @@ class QuestionSet(val questions: List<Question>) {
     fun hasMoreQuestions(): Boolean {
         return currentIndex + 1 <= questions.size - 1
     }
+
+    // Add this to get current question number
+    fun getCurrentQuestionNumber(): Int {
+        return currentIndex + 1
+    }
 }
 
 //class QuestionSet(val questions: List<Question>) {

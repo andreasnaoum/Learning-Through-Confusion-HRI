@@ -8,7 +8,7 @@ import furhatos.flow.kotlin.*
 import furhatos.nlu.common.No
 import furhatos.nlu.common.Yes
 
-var maxRounds = 1
+var maxRounds = 3
 
 val NewGame: State = state(parent = Parent) {
 

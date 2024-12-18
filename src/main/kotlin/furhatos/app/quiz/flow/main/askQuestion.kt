@@ -12,7 +12,7 @@ import furhatos.nlu.common.RequestRepeat
 val AskQuestion: State = state(parent = Parent) {
     var questionSet: QuestionSet? = null
     var failedAttempts = 0
-    var currentQuestionIndex = 1
+//    var currentQuestionIndex = 1
 
     onEntry {
         questionSet = questions
@@ -26,7 +26,10 @@ val AskQuestion: State = state(parent = Parent) {
 
         val newQuestionMetrics = QuestionMetrics()
         newQuestionMetrics.startTime = System.currentTimeMillis()
-        currentRoundMetrics.questionMetrics[currentQuestionIndex] = newQuestionMetrics
+
+        currentRoundMetrics.questionMetrics[questionSet!!.getCurrentQuestionNumber()] = newQuestionMetrics
+
+//        currentRoundMetrics.questionMetrics[currentQuestionIndex] = newQuestionMetrics
 
         if (questionSet != null) {
             furhat.setSpeechRecPhrases(questionSet!!.current.speechPhrases)
@@ -40,7 +43,8 @@ val AskQuestion: State = state(parent = Parent) {
         // Track repeat request
         val currentMetrics = users.current.quiz.gameMetrics
             .roundMetrics[Rounds.currentRoundIndex - 1]!!
-            .questionMetrics[currentQuestionIndex]!!
+            .questionMetrics[questionSet!!.getCurrentQuestionNumber()]!!
+//            .questionMetrics[currentQuestionIndex]!!
         currentMetrics.repeatRequests++
 
         if (questionSet != null) {
@@ -55,7 +59,8 @@ val AskQuestion: State = state(parent = Parent) {
     onResponse<AnswerOption> {
         val answer = it.intent
         val currentRoundMetrics = users.current.quiz.gameMetrics.roundMetrics[Rounds.currentRoundIndex - 1]!!
-        val currentQuestionMetrics = currentRoundMetrics.questionMetrics[currentQuestionIndex]!!
+        val currentQuestionMetrics = currentRoundMetrics.questionMetrics[questionSet!!.getCurrentQuestionNumber()]!!
+//        val currentQuestionMetrics = currentRoundMetrics.questionMetrics[currentQuestionIndex]!!
 
         // Record metrics
         currentQuestionMetrics.endTime = System.currentTimeMillis()
@@ -97,7 +102,7 @@ val AskQuestion: State = state(parent = Parent) {
             furhat.say(roundSummary)
             goto(NewGame)
         } else {
-            ++currentQuestionIndex
+//            ++currentQuestionIndex
             goto(NewQuestion)
         }
     }
@@ -105,7 +110,8 @@ val AskQuestion: State = state(parent = Parent) {
     onResponse<RequestHint> {
         val currentMetrics = users.current.quiz.gameMetrics
             .roundMetrics[Rounds.currentRoundIndex - 1]!!
-            .questionMetrics[currentQuestionIndex]!!
+            .questionMetrics[questionSet!!.getCurrentQuestionNumber()]!!
+//            .questionMetrics[currentQuestionIndex]!!
         currentMetrics.hintsUsed++
 
         furhat.say("Okay, let me help you!")
