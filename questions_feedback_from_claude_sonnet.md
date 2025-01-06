@@ -25,41 +25,41 @@ Give your answer in a table.
 ### Question 1: Identifying dogs and cats in photos
 | Hint | Confusion (1-5) | Clarity (1-5) | Confidence (1-5) | Thoughts | Answer |
 |------|-----------------|---------------|------------------|----------|---------|
-| Hint 1 | 4 | 2 | 2 | Wait, both types could work with pictures, right? I'm pretty confused... | Not sure |
-| Hint 2 | 2 | 4 | 4 | Oh! We need labeled images... that sounds like we need a "teacher" | Probably A |
-| Hint 3 | 1 | 5 | 5 | Now I get it! Just like I need someone to first tell me "this is a dog" and "this is a cat" to learn the difference | Definitely A |
+| UC | 4 | 2 | 2 | Wait, both types could work with pictures, right? I'm pretty confused... | Not sure |
+| PC | 2 | 4 | 4 | Oh! We need labeled images... that sounds like we need a "teacher" | Probably A |
+| NC | 1 | 5 | 5 | Now I get it! Just like I need someone to first tell me "this is a dog" and "this is a cat" to learn the difference | Definitely A |
 
 ### Question 2: Supervised learning situation
 | Hint | Confusion (1-5) | Clarity (1-5) | Confidence (1-5) | Thoughts | Answer |
 |------|-----------------|---------------|------------------|----------|---------|
-| Hint 1 | 5 | 2 | 1 | All of these are ways computers learn, this hint doesn't help narrow it down | No idea |
-| Hint 2 | 3 | 3 | 3 | Something about needing a teacher... option B mentions "examples" | Maybe B |
-| Hint 3 | 1 | 5 | 5 | Option B is the only one where the computer gets examples with right answers | Definitely B |
+| UC | 5 | 2 | 1 | All of these are ways computers learn, this hint doesn't help narrow it down | No idea |
+| PC | 3 | 3 | 3 | Something about needing a teacher... option B mentions "examples" | Maybe B |
+| NC | 1 | 5 | 5 | Option B is the only one where the computer gets examples with right answers | Definitely B |
 
 ### Question 3: Unsupervised learning situation
 | Hint | Confusion (1-5) | Clarity (1-5) | Confidence (1-5) | Thoughts | Answer |
 |------|-----------------|---------------|------------------|----------|---------|
-| Hint 1 | 4 | 2 | 2 | Aren't all of these about finding patterns somehow? | No clue |
-| Hint 2 | 2 | 4 | 4 | Like organizing stuff without rules - sounds like option A | Probably A |
-| Hint 3 | 1 | 5 | 5 | The store customers example makes it super clear! | Definitely A |
+| UC | 4 | 2 | 2 | Aren't all of these about finding patterns somehow? | No clue |
+| PC | 2 | 4 | 4 | Like organizing stuff without rules - sounds like option A | Probably A |
+| NC | 1 | 5 | 5 | The store customers example makes it super clear! | Definitely A |
 
 ### Question 4: Reinforcement Learning reward mechanism
 | Hint | Confusion (1-5) | Clarity (1-5) | Confidence (1-5) | Thoughts | Answer |
 |------|-----------------|---------------|------------------|----------|---------|
-| Hint 1 | 5 | 1 | 1 | All options seem like they could have changing responses | No idea |
-| Hint 2 | 3 | 3 | 3 | It's about learning while doing something, not just studying examples | Leaning towards A |
-| Hint 3 | 1 | 5 | 5 | The bicycle example makes perfect sense! | Definitely A |
+| UC | 5 | 1 | 1 | All options seem like they could have changing responses | No idea |
+| PC | 3 | 3 | 3 | It's about learning while doing something, not just studying examples | Leaning towards A |
+| NC | 1 | 5 | 5 | The bicycle example makes perfect sense! | Definitely A |
 
 ### Question 5: Agent vs Environment
 | Hint | Confusion (1-5) | Clarity (1-5) | Confidence (1-5) | Thoughts | Answer |
 |------|-----------------|---------------|------------------|----------|---------|
-| Hint 1 | 4 | 2 | 2 | Aren't they all interacting somehow? | Not sure |
-| Hint 2 | 3 | 3 | 3 | The agent does something and the environment reacts? | Maybe A |
-| Hint 3 | 1 | 5 | 5 | The tennis wall example makes it super clear! | Definitely A |
+| UC | 4 | 2 | 2 | Aren't they all interacting somehow? | Not sure |
+| PC | 3 | 3 | 3 | The agent does something and the environment reacts? | Maybe A |
+| NC | 1 | 5 | 5 | The tennis wall example makes it super clear! | Definitely A |
 
 ### Question 6: Smart traffic system
 | Hint | Confusion (1-5) | Clarity (1-5) | Confidence (1-5) | Thoughts | Answer |
 |------|-----------------|---------------|------------------|----------|---------|
-| Hint 1 | 3 | 3 | 2 | The traffic light system is in control, but most options involve the system doing something | Not sure |
-| Hint 2 | 2 | 4 | 4 | Only A talks about actually trying to make things better | Probably A |
-| Hint 3 | 1 | 5 | 5 | The game example makes it super clear! | Definitely A |
+| UC | 3 | 3 | 2 | The traffic light system is in control, but most options involve the system doing something | Not sure |
+| PC | 2 | 4 | 4 | Only A talks about actually trying to make things better | Probably A |
+| NC | 1 | 5 | 5 | The game example makes it super clear! | Definitely A |
