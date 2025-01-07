@@ -12,7 +12,7 @@ var maxRounds = 3
 
 val NewGame: State = state(parent = Parent) {
 
-    val PARTICIPANT_ID = "01" // Change this for each participant
+
 
     onEntry {
         playing = true
@@ -30,7 +30,7 @@ val NewGame: State = state(parent = Parent) {
             if (Rounds.currentRoundIndex < 1) {
                 val initial_speak = utterance {
                     + Gestures.Smile(strength=2.0, duration=1.5)
-                    + "Let's the game begin!"
+                    + "Let's the learning begin!"
                 }
                 furhat.say(initial_speak)
             }

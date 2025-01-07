@@ -62,7 +62,7 @@ var questions: QuestionSet? = null
 fun QueryPerson(user: User) = state(parent = Parent) {
     onEntry {
         if (!user.quiz.played) {
-            furhat.ask("Do you want to learn more about AI and play a game?")
+            furhat.ask("Do you want to learn more about AI?")
         } else {
             furhat.ask("Do you want to play again? Maybe you can beat your old score of ${user.quiz.lastScore}")
         }

@@ -10,164 +10,159 @@ package furhatos.app.quiz.questions
 val questionsRound1 = mutableListOf(
 
         Question(
-                "If an AI learns to sort your photos into 'cats' and 'dogs' by looking at labeled pictures, what type of learning is this?",
-                noconfusion = "When a computer isn’t told what’s in the pictures (no labels), it has to group them by itself. This type of learning relies on identifying patterns in the data, without any prior guidance or supervision about what the groups should represent.",
-                productiveconfusion = "Imagine the computer has to figure out the groups by looking for patterns, without being told what a cat or a dog looks like. What type of learning could this be?",
-                unproductiveconfusion = "It’s when the computer decides how to group data on its own. Maybe try trial and error?",
-                answer = listOf("Supervised Learning", "Supervised"),
+                "What is the main goal of Artificial Intelligence?",
+                noconfusion = "Look for the option that talks about copying human abilities. Regular computers can store, run, and connect, but only one option focuses on making computers act like human brains. Which one describes this human-like behavior?",
+                productiveconfusion = "Look for the option that talks about copying human abilities. Regular computers can store, run, and connect, but only one option focuses on making computers act like human brains. Which one describes this human-like behavior?",
+                unproductiveconfusion = "Look for the option that talks about copying human abilities. Regular computers can store, run, and connect, but only one option focuses on making computers act like human brains. Which one describes this human-like behavior?",
+                answer = listOf("To make computers think", "think"),
                 alternatives = listOf(
                         listOf(
-                                "Unsupervised Learning",
-                                "Unsupervised",
+                                "To store large amounts of data",
+                                "data",
                         ),
                         listOf(
-                                "Reinforcement Learning",
-                                "Reinforcement"
+                                "To make computers run faster",
+                                "faster"
                         ),
                         listOf(
-                                "Generative Learning",
-                                "Generative"
+                                "To connect devices to the internet",
+                                "internet"
                         )
                 ),
         ),
 
         Question(
-                "Which of these situations involves supervised learning?",
-                noconfusion = "When you show a computer labeled examples—like the letter ‘a’ with the label alpha—you’re essentially supervising it by providing the correct answers to learn from",
-                productiveconfusion = "This learning involves giving the computer clear examples with the answers already labeled so it can learn from them.",
-                unproductiveconfusion = "This involves the computer learning with labeled data",
+                "Which of the following is the branch of Artificial Intelligence?",
+                noconfusion = "Think carefully about which technology is designed to mimic human intelligence. Three of these options focus on building or analyzing fixed systems, while one specializes in creating programs that can actually learn over time. Which one has this unique 'learning' ability?",
+                productiveconfusion = "Think carefully about which technology is designed to mimic human intelligence. Three of these options focus on building or analyzing fixed systems, while one specializes in creating programs that can actually learn over time. Which one has this unique 'learning' ability?",
+                unproductiveconfusion = "Think carefully about which technology is designed to mimic human intelligence. Three of these options focus on building or analyzing fixed systems, while one specializes in creating programs that can actually learn over time. Which one has this unique 'learning' ability?",
                 answer = listOf(
-                        "Training a model to recognize handwritten numbers by providing labeled examples of each number",
-                        "Training",
-                        "model",
-                        "recognize handwritten numbers"
+                        "Machine learning",
+                        "Machine",
+                        "learning"
                 ),
                 alternatives = listOf(
                         listOf(
-                                "Grouping customers based on their purchase history without knowing customer types in advance",
-                                "Grouping",
-                                "customers",
-                                "purchase",
-                                "history"
+                                "Cyber Forensics",
+                                "Cyber",
+                                "Forensics",
                         ),
                         listOf(
-                                "Allowing a robot to learn the fastest way through a maze by trial and error",
-                                "trial and error"
+                                "Full Stack Development",
+                                "Full",
+                                "Stack",
+                                "Development"
                         ),
                         listOf(
-                                "Clustering data points without providing any labels",
-                                "Clustering"
+                                "Network Design",
+                                "Network",
+                                "Design"
                         )
                 )
         ),
 
         Question(
-                "In which type of learning does the algorithm rely on labeled data to make predictions or decisions?",
-                noconfusion = "This type of learning happens when a teacher provides both the data and the correct answers, giving the computer the supervision it needs to learn the relationship between them.",
-                productiveconfusion = "The key here is that the computer needs both the data and the correct answers (labels) to learn from.",
-                unproductiveconfusion = "It’s where the computer uses some kind of guidance to learn.",
-                answer = listOf("Supervised learning", "Supervised"),
+                "Who is considered the Father of Artificial Intelligence?",
+                noconfusion = "While Geoffrey Hinton revolutionized deep learning, Andrew Ng pioneered modern machine learning, and Alan Turing conceptualized computing intelligence, only John McCarthy actually established the field and name of 'Artificial Intelligence' at a historic 1956 conference. Which pioneer took this founding step?",
+                productiveconfusion = "While Geoffrey Hinton revolutionized deep learning, Andrew Ng pioneered modern machine learning, and Alan Turing conceptualized computing intelligence, only John McCarthy actually established the field and name of 'Artificial Intelligence' at a historic 1956 conference. Which pioneer took this founding step?",
+                unproductiveconfusion = "While Geoffrey Hinton revolutionized deep learning, Andrew Ng pioneered modern machine learning, and Alan Turing conceptualized computing intelligence, only John McCarthy actually established the field and name of 'Artificial Intelligence' at a historic 1956 conference. Which pioneer took this founding step?",
+                answer = listOf("John McCarthy", "John", "McCarthy"),
                 alternatives = listOf(
-                        listOf("Unsupervised learning", "Unsupervised"),
-                        listOf("Transfer learning", "Transfer"),
-                        listOf("Reinforcement learning", "Reinforcement"),
+                        listOf("Geoffrey Hinton", "Geoffrey", "Hinton"),
+                        listOf("Andrew Ng", "Andrew", "Ng"),
+                        listOf("Alan Turing", "Alan", "Turing"),
                 )
         ),
 )
 
 val questionsRound2 = mutableListOf(
         Question(
-                "What is the main goal of Reinforcement Learning?",
-                noconfusion = "The main goal of RL is to make decisions that maximize the reward the agent receives over time.",
-                productiveconfusion = "RL is like learning to ride a bike; the agent takes actions, sees what works as feedback, and improves to achieve a goal, like staying balanced.",
-                unproductiveconfusion = "Reinforcement Learning is about learning and involves some kind of trial and error process.",
+                "Which type of machine learning would be most appropriate for automatically identifying dogs and cats in photos?",
+                noconfusion = "Consider which learning type specifically requires labeled training data to supervise the learning procedure. The computer needs to learn from photos that humans have already marked as dog or cat to learn the difference between them.",
+                productiveconfusion = "Think about which type of machine learning needs already labeled images for training to recognize objects in pictures.",
+                unproductiveconfusion = "Think about which type of machine learning for recognizing objects in pictures.",
                 answer = listOf(
-                        "To maximize rewards over time by learning from feedback.",
-                        "To maximize rewards",
-                        "learning from feedback",
-                        "rewards"
+                        "Supervised learning",
+                        "Supervised",
                 ),
                 alternatives = listOf(
                         listOf(
-                                "To find an optimal way to solve all problems.",
-                                "solve all problems",
-                                "To find an optimal way",
-                                "optimal way",
-                                "problems"
+                                "Unsupervised learning",
+                                "Unsupervised",
                         ),
                         listOf(
-                                "To create a perfect model of the environment before the agent starts learning.",
-                                "perfect model",
-                                "agent starts learning",
-                                "environment",
+                                "Reinforcement learning",
+                                "Reinforcement",
                         ),
                         listOf(
-                                "To follow a predefined sequence of steps without adapting.",
-                                "without adapting",
-                                "predefined sequence ",
-                                "To follow"
+                                "Semisupervised learning",
+                                "Semisupervised"
                         )
                 )
         ),
 
         Question(
-                "What is the difference between an agent and its environment in Reinforcement Learning?",
-                noconfusion = "The agent is the decision-maker, and the environment reacts to those decisions by giving feedback.",
-                productiveconfusion = "Think of a robot exploring a room. The agent is the robot itself (its brain and sensors), and the environment is everything outside the robot (the walls, floor, obstacles).",
-                unproductiveconfusion = "The agent and environment interact in ways that are system-dependent.",
+                "Which of these situations involves supervised learning?",
+                noconfusion = "When you show a computer labeled examples, like the letter a with the label alpha, you’re essentially supervising it by providing the correct answers to learn from. The other options either work without any labels or through trial and error, which is different from supervised learning.",
+                productiveconfusion = "Consider which situation is like having a teacher who can check if answers are right or wrong. Which option mentions having data that's already labeled with correct answers?",
+                unproductiveconfusion = "Think about how a computer learns.",
                 answer = listOf(
-                        "The agent takes actions, and the environment provides feedback based on these actions.",
-                        "agent takes actions",
-                        "environment provides feedback",
-                        "these actions"
+                        "Training a model to recognize handwritten numbers by providing examples of each number",
+                        "Training a model",
+                        "handwritten numbers",
+                        "providing examples"
                 ),
                 alternatives = listOf(
                         listOf(
-                                "The agent creates the environment.",
-                                "agent creates the environment",
-                                "creates the environment",
-                                "agent creates "
+                                "Grouping customers based on their purchase history without knowing customer types in advance",
+                                "Grouping customers",
+                                "purchase history",
+                                "customer types"
                         ),
                         listOf(
-                                "The agent and the environment have the same functions and roles.",
-                                "The agent and the environment",
-                                "same functions and roles",
-                                "roles",
+                                "Allowing a robot to learn the fastest way through a maze by trial and error",
+                                "Allowing a robot",
+                                "learn the fastest way",
+                                "trial and error",
                         ),
                         listOf(
-                                "The environment learns from the agent’s actions, not the other way around.",
-                                "environment learns",
-                                "agent’s actions ",
-                                "not the other way around"
+                                "Clustering data points without providing any labels",
+                                "Clustering data",
+                                "without providing",
+                                "any labels"
                         )
                 )
         ),
 
         Question(
-                "What is a policy in Reinforcement Learning?",
-                noconfusion = "A policy is the set of rules the agent follows to choose actions based on the situation.",
-                productiveconfusion = "A policy is like a strategy in chess that tells you which move to make depending on the board's current state.",
-                unproductiveconfusion = "A policy is like a strategy in chess that tells you which move to make depending on the board's current state.",
+                "Which of these situations uses unsupervised learning?",
+                noconfusion = "Imagine a store looking at how customers shop. Some might buy only during sales, others prefer premium items, some shop weekly, others monthly. These shopping patterns emerge naturally, we don't tell the computer what types of shoppers to look for. The groups form based on similar behaviors, without any predefined categories.",
+                productiveconfusion = "Which situation involves the computer grouping things without being told beforehand what the groups should be? Like organizing a closet your own way, without someone telling you how to categorize the items.",
+                unproductiveconfusion = "Think about patterns.",
                 answer = listOf(
-                        "A rule or function that governs the agent’s actions in different situations",
-                        "function that governs"
+                        "Grouping online shoppers into different customer types based on their browsing history without predefined categories",
+                        "Grouping online",
+                        "different customer",
+                        "browsing history",
+                        "without predefined categories"
                 ),
                 alternatives = listOf(
                         listOf(
-                                "A way to track the rewards the agent receives over time.",
-                                "agent receives over time",
-                                "way to track"
+                                "Teaching a computer to detect spam emails using examples of spam and non-spam messages",
+                                "Teaching a computer",
+                                "detect spam emails",
+                                "spam and non-spam messages"
                         ),
                         listOf(
-                                "A map of the environment that the agent navigates",
-                                "map of the environment",
-                                "agent navigates"
+                                "Training an AI to classify medical images using a database of diagnosed patient scans",
+                                "Training an AI",
+                                "classify medical images"
                         ),
                         listOf(
-                                "A strategy the agent uses to maximize its penalty in a given environment.",
-                                "A strategy the agent",
-                                "uses to maximize",
-                                "penalty"
+                                "Predicting house prices using data from past sales with known prices",
+                                "Predicting house prices",
+                                "past sales with known prices",
+                                "using data from past sales"
                         ),
                 )
         ),
@@ -176,66 +171,84 @@ val questionsRound2 = mutableListOf(
 val questionsRound3 = mutableListOf(
 
         Question(
-                "What makes a Generative Model different from a Discriminative Model?",
-                noconfusion = "The main difference is that a Generative Model wants to generate new data.",
-                productiveconfusion = "Discriminate models focus mostly on classification tasks.",
-                unproductiveconfusion = "Generative Models and Discriminative Models can be trained on the same dataset",
-                answer = listOf("Generative models focus on creating new data", "new data"),
+                "Which scenario best represents the reward mechanism in a reinforcement learning system?",
+                noconfusion = "Imagine riding a bicycle on a windy day, you constantly adjust your balance based on wind gusts, your speed, and the road conditions. Each adjustment affects your stability, and you learn from each moment how to stay upright. Which scenario involves similar real-time learning and adaptation to changing conditions?",
+                productiveconfusion = "Consider these questions. Which scenario involves learning through actual experience rather than from previous data? Does it get immediate feedback that helps it improve right away?  Can it get better during operation without being shown correct examples?",
+                unproductiveconfusion = "Think about dynamic responses.",
+                answer = listOf(
+                        "A drone learning to maintain stability in varying wind conditions by receiving altitude and orientation feedback signals",
+                        "A drone learning",
+                        "maintain stability",
+                        "wind conditions"
+                ),
                 alternatives = listOf(
                         listOf(
-                                "Generative models are used only for classification tasks",
-                                "classification tasks",
+                                "A factory robot learning assembly patterns from a database of correct assemblies",
+                                "A factory robot",
                         ),
                         listOf(
-                                "Generative models only use labeled data",
-                                "labeled data"
+                                "A trading algorithm using historical price patterns to identify market trends",
+                                "A trading algorithm"
                         ),
                         listOf(
-                                "Generative models can only be used in supervised learning",
-                                "supervised learning"
+                                "A quality control system detecting defects based on images of good and bad products",
+                                "A quality control system"
                         )
                 ),
         ),
 
         Question(
-                "What is one of the goals of a Generative Model?",
-                noconfusion = "When you show a computer labeled examples—like the letter ‘a’ with the label alpha—you’re essentially supervising it by providing the correct answers to learn from",
-                productiveconfusion = "This learning involves giving the computer clear examples with the answers already labeled so it can learn from them.",
-                unproductiveconfusion = "This involves the computer learning with labeled data",
+                "What is the difference between an agent and its environment in reinforcement learning?",
+                noconfusion = "Imagine playing tennis with a wall. the agent decide how to hit the ball, while the wall and court (the environment) determine where the ball goes and if you scored. You make choices and learn, while the environment shows you what happens as a result. Which option describes this kind of relationship?",
+                productiveconfusion = "The agent makes moves and the environment responds to moves.",
+                unproductiveconfusion = "Think about interaction.",
                 answer = listOf(
-                        "To generate new data based on the patterns learned from the training data.",
-                        "patterns",
-                        "learned",
+                        "The agent takes actions, and the environment provides feedback based on these actions. ",
+                        "The agent takes actions",
+                        "environment provides feedback",
                 ),
                 alternatives = listOf(
                         listOf(
-                                "To classify unseen data based on input features",
-                                "classify",
-                                "input features",
+                                "The agent collects labeled data while the environment provides unlabeled data.",
+                                "The agent collects labeled data",
+                                "environment provides unlabeled data",
                         ),
                         listOf(
-                                "To generate new data that is as similar as possible to the training data",
-                                "similar",
-                                "possible",
+                                "The agent stores data while the environment processes it",
+                                "The agent stores data",
+                                "environment processes it",
                         ),
                         listOf(
-                                "To predict unseen data",
-                                "unseen data",
-                                "predict",
+                                "The environment learns from the agent’s actions, not the other way around.",
+                                "The environment learns",
+                                "from the agent’s actions",
+                                "not the other way around"
                         )
                 )
         ),
 
         Question(
-                "How does a Generative Model learn?",
-                noconfusion = "It learns by calculating the underlying structure of what it's being trained on.",
-                productiveconfusion = "It learns by approximating an imaginary dataset structure compared to the one it is trained on.",
-                unproductiveconfusion = "It learns by understanding what should come next based on the dataset.",
-                answer = listOf("By understanding the underlying distribution of the input data", "understanding"),
+                "A smart traffic system uses reinforcement learning to control traffic lights in a city. Which description best matches how it actually works?",
+                noconfusion = "Think of it like playing a game: you see the current traffic situation, you adjust the traffic lights, then you see if cars move faster. You keep trying different timings until you find what works best. Which option describes this complete cycle?",
+                productiveconfusion = "Which option shows a system that's actively trying to improve things rather than just analyzing or storing information?",
+                unproductiveconfusion = "Think about who's in control.",
+                answer = listOf(
+                        "The traffic light controller looks at how many cars are waiting and how long they've been waiting. It tries different signal timing patterns and learns from seeing how these changes affect the average waiting time.",
+                        "The traffic light controller"
+                ),
                 alternatives = listOf(
-                        listOf("By learning all the data points on the data it was trained on", "data points"),
-                        listOf("By minimizing the model's output error over time", "minimizing"),
-                        listOf("By learning the distribution of the data it generates", "distribution"),
+                        listOf(
+                                "The cameras watch traffic and predict busy periods based on past data. They get rewarded for guessing rush hours correctly.",
+                                "The cameras watch traffic"
+                        ),
+                        listOf(
+                                "The system records how long lights stay green and stores traffic data. It aims to save storage space efficiently.",
+                                "The system records"
+                        ),
+                        listOf(
+                                "The analyzer looks at different types of vehicles and groups similar traffic patterns together.",
+                                "The analyzer looks"
+                        ),
                 )
         ),
 

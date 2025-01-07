@@ -115,7 +115,7 @@ val AskQuestion: State = state(parent = Parent) {
         currentMetrics.hintsUsed++
 
         furhat.say("Okay, let me help you!")
-        when (scenario) {
+        when (confusion_type) {
             0 -> furhat.ask(questionSet!!.current.noConfusionHint)
             1 -> furhat.ask(questionSet!!.current.productiveConfusionHint)
             2 -> furhat.ask(questionSet!!.current.unproductiveConfusionHint)
@@ -141,13 +141,15 @@ val AskQuestion: State = state(parent = Parent) {
         )
     }
 
-    onNoResponse {
-        random(
-            { furhat.say("Too slow! Here comes the next question") },
-            { furhat.say("A bit too slow amigo! Get ready for the next question") }
-        )
-        goto(NewQuestion)
-    }
+
+    // Disable this for unlimited time to response
+//    onNoResponse {
+//        random(
+//            { furhat.say("Too slow! Here comes the next question") },
+//            { furhat.say("A bit too slow amigo! Get ready for the next question") }
+//        )
+//        goto(NewQuestion)
+//    }
 
     onResponse {
         failedAttempts++
