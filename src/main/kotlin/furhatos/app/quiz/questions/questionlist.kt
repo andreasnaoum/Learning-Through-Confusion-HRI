@@ -109,27 +109,27 @@ val questionsRound2 = mutableListOf(
                 answer = listOf(
                         "Training a model to recognize handwritten numbers by providing examples of each number",
                         "Training a model",
-                        "handwritten numbers",
-                        "providing examples"
+//                        "handwritten numbers",
+//                        "providing examples"
                 ),
                 alternatives = listOf(
                         listOf(
                                 "Grouping customers based on their purchase history without knowing customer types in advance",
                                 "Grouping customers",
-                                "purchase history",
-                                "customer types"
+//                                "purchase history",
+//                                "customer types"
                         ),
                         listOf(
                                 "Allowing a robot to learn the fastest way through a maze by trial and error",
                                 "Allowing a robot",
-                                "learn the fastest way",
-                                "trial and error",
+//                                "learn the fastest way",
+//                                "trial and error",
                         ),
                         listOf(
                                 "Clustering data points without providing any labels",
                                 "Clustering data",
-                                "without providing",
-                                "any labels"
+//                                "without providing",
+//                                "any labels"
                         )
                 )
         ),
@@ -142,27 +142,25 @@ val questionsRound2 = mutableListOf(
                 answer = listOf(
                         "Grouping online shoppers into different customer types based on their browsing history without predefined categories",
                         "Grouping online",
-                        "different customer",
-                        "browsing history",
-                        "without predefined categories"
+//                        "different customer",
                 ),
                 alternatives = listOf(
                         listOf(
                                 "Teaching a computer to detect spam emails using examples of spam and non-spam messages",
                                 "Teaching a computer",
-                                "detect spam emails",
-                                "spam and non-spam messages"
+//                                "detect spam emails",
+//                                "spam and non-spam messages"
                         ),
                         listOf(
                                 "Training an AI to classify medical images using a database of diagnosed patient scans",
                                 "Training an AI",
-                                "classify medical images"
+//                                "classify medical images"
                         ),
                         listOf(
                                 "Predicting house prices using data from past sales with known prices",
                                 "Predicting house prices",
-                                "past sales with known prices",
-                                "using data from past sales"
+//                                "past sales with known prices",
+//                                "using data from past sales"
                         ),
                 )
         ),

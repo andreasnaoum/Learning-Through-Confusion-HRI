@@ -32,7 +32,7 @@ val AskQuestion: State = state(parent = Parent) {
 //        currentRoundMetrics.questionMetrics[currentQuestionIndex] = newQuestionMetrics
 
         if (questionSet != null) {
-            furhat.setSpeechRecPhrases(questionSet!!.current.speechPhrases)
+//            furhat.setSpeechRecPhrases(questionSet!!.current.speechPhrases)
             furhat.ask(questionSet!!.current.text + " " + questionSet!!.current.getOptionsString())
         }
     }
@@ -74,9 +74,9 @@ val AskQuestion: State = state(parent = Parent) {
             users.current.quiz.score++
 
             val scoreMessage = when (users.current.quiz.score) {
-                1 -> "You nailed it! That was the ${furhat.voice.emphasis("right")} answer!"
-                2 -> "Are you an AI expert? That was the ${furhat.voice.emphasis("right")} answer!"
-                else -> "Nice! That was the ${furhat.voice.emphasis("right")} answer!"
+                1 -> "You nailed it! That was the right answer!"
+                2 -> "Are you an AI expert? That was the right answer!"
+                else -> "Nice! That was the right answer!"
             }
 
             furhat.say(scoreMessage)
@@ -85,14 +85,14 @@ val AskQuestion: State = state(parent = Parent) {
             furhat.gesture(Gestures.Shake)
             val bad1 = utterance {
                 + Gestures.BrowFrown(strength = 2.0, duration = 6.0)
-                + "Sorry! That was ${furhat.voice.emphasis("not")} correct."
+                + "Sorry! That was not correct."
             }
             furhat.say(bad1)
 
-            if (questionSet != null) {
-                users.current.quiz.questionsAsked.add(questionSet!!.current.text)
-            }
+        }
 
+        if (questionSet != null) {
+            users.current.quiz.questionsAsked.add(questionSet!!.current.text)
         }
 
         if (!questions!!.hasMoreQuestions()) {
@@ -145,10 +145,10 @@ val AskQuestion: State = state(parent = Parent) {
     // Disable this for unlimited time to response
 //    onNoResponse {
 //        random(
-//            { furhat.say("Too slow! Here comes the next question") },
-//            { furhat.say("A bit too slow amigo! Get ready for the next question") }
+//            { furhat.say("Too slow! ") },
+//            { furhat.say("A bit too slow amigo! ") }
 //        )
-//        goto(NewQuestion)
+////        goto(NewQuestion)
 //    }
 
     onResponse {

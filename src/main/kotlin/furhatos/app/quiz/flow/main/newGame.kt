@@ -12,8 +12,6 @@ var maxRounds = 3
 
 val NewGame: State = state(parent = Parent) {
 
-
-
     onEntry {
         playing = true
         delay(2000)
@@ -48,10 +46,10 @@ val NewGame: State = state(parent = Parent) {
                     furhat.ask(initial_speak)
                 }
                 1 -> {
-                    furhat.ask("This might be tricky, but I believe you can handle it! Ready?")
+                    furhat.ask("This might be tricky, but I believe you can handle it! Should I start??")
                 }
                 2 -> {
-                    furhat.ask("This part is tricky, but let's push through! Ready?")
+                    furhat.ask("This part is hard, but let's push through! Ready?")
                 }
             }
         }

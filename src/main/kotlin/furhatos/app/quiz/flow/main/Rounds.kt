@@ -8,7 +8,7 @@ object Rounds {
         Round(
             description = """
                 Artificial Intelligence is a field of computer science focused on creating intelligent machines that can simulate human cognitive abilities through various techniques like machine learning, neural networks, and natural language processing to solve complex problems and make decisions across diverse applications.
-                Let’s start with some basic questions for Artificial Intelligence. Remember, you can always ask for a hint to help you.
+                Let’s start with some basic questions for Artificial Intelligence.
             """
         ),
         Round(
