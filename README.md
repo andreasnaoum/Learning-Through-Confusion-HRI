@@ -1,10 +1,10 @@
-# Exploring the Impact of Confusion on Learning and Engagement in Human-Robot Interaction
+# Learning Through Confusion in Human-Robot Interaction: \\ A Pilot Study with Furhat Robot
 
 This repository contains the code for a project developed as part of the **DD2413 Social Robotics** course at **KTH Royal Institute of Technology**. The project demonstrates how the Furhat social robot can be used to explore the role of confusion in learning and engagement during human-robot interactions.
 
 ## Project Overview
 The interaction includes:
-- Welcoming participants and asking if they want to learn about AI or play a game.
+- Welcoming participants and asking if they want to learn about AI.
 - Explaining AI concepts such as supervised and unsupervised learning.
 - Asking follow-up multiple-choice questions to reinforce learning and assess understanding.
 
@@ -24,6 +24,6 @@ The goal is to examine how creating and resolving confusion can impact user enga
 
 Watch a demo of the interaction below:
 
-[![Watch the demo](https://img.youtube.com/vi/3kywVuTSIVo/0.jpg)](https://youtu.be/3kywVuTSIVo)
+[![Watch the demo](https://img.youtube.com/vi/JnoAcd8MO3k/0.jpg)](https://youtu.be/JnoAcd8MO3k)
 
 Click on the image to watch the video on YouTube!
