@@ -14,6 +14,7 @@ The goal is to examine how creating and resolving confusion can impact user enga
 - Interactive dialogues designed to introduce and explain AI concepts.
 - Game-like elements to make learning more engaging.
 - Feedback collection through multiple-choice questions to evaluate understanding.
+- Automatically generate a file for participant with duration of each question, attempts, hint used, correct answer. 
 
 ## Requirements
 - **FurhatOS SDK**
