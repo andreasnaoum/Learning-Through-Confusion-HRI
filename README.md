@@ -1,4 +1,4 @@
-# Learning Through Confusion in Human-Robot Interaction: \\ A Pilot Study with Furhat Robot
+# Learning Through Confusion in Human-Robot Interaction: A Pilot Study with Furhat Robot
 
 This repository contains the code for a project developed as part of the **DD2413 Social Robotics** course at **KTH Royal Institute of Technology**. The project demonstrates how the Furhat social robot can be used to explore the role of confusion in learning and engagement during human-robot interactions.
 
